@@ -43,4 +43,8 @@ public class TourPrice implements Serializable {
     @JoinColumn(name = "matour", nullable = false, insertable = false, updatable = false)
     private Tour tour;
 
+//    @ManyToOne
+//    @JoinColumn(name = "matour", nullable = false, insertable = false, updatable = false)
+//    private TouristGroup touristGroup;
+
 }

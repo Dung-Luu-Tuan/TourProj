@@ -32,5 +32,14 @@
         <mapping class="com.example.tour_project.models.TourPrice" />
         <mapping class="com.example.tour_project.models.PlaceOrder" />
         <mapping class="com.example.tour_project.models.Place" />
+        <mapping class="com.example.tour_project.models.TouristGroup" />
+        <mapping class="com.example.tour_project.models.CustomerTour" />
+        <mapping class="com.example.tour_project.models.Customer" />
+        <mapping class="com.example.tour_project.models.DetailTourGroup" />
+        <mapping class="com.example.tour_project.models.Cost" />
+        <mapping class="com.example.tour_project.models.Staff" />
+        <mapping class="com.example.tour_project.models.StaffAllocation" />
+        <mapping class="com.example.tour_project.models.TypeCost" />
+
     </session-factory>
 </hibernate-configuration>

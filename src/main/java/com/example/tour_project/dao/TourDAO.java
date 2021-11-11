@@ -10,6 +10,7 @@ import java.util.List;
 
 public class TourDAO {
     private static SessionFactory factory;
+
     public static List<Tour> listTour() {
         List<Tour> tours = null;
         factory = HibernateUtil.getSessionFactory();
@@ -32,12 +33,15 @@ public class TourDAO {
         try {
             session.beginTransaction();
             tour = session.find(Tour.class, matour);
-//            ArrayList<TourPrice> tourPrices = new ArrayList<>(tour.getPrices());
-//            tour = new Tour(tour.getMatour(), tour.getLoaihinh(), tourPrices);
             return tour;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        session.close();
         return null;
     }
 }
+
+
+//            ArrayList<TourPrice> tourPrices = new ArrayList<>(tour.getPrices());
+//            tour = new Tour(tour.getMatour(), tour.getLoaihinh(), tourPrices);
