@@ -101,12 +101,4 @@ public class TourDetailsController{
 
         stage.setScene(scene);
     }
-
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        Platform.runLater(() -> {
-//            loadData(matourColumn);
-//            setView(tour);
-//        });
-//    }
 }

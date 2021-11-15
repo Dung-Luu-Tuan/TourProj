@@ -40,10 +40,7 @@ public class TourListsController implements Initializable {
     private TableColumn<Tour, String> matour, tengoi, maloaihinh, dacdiem;
 
     @FXML
-    private TextField tengoitf, maloaihinhtf, dacdiemtf;
-
-    @FXML
-    private Label matourtf;
+    private TextField tengoitf, maloaihinhtf, dacdiemtf, matourtf;
 
     @FXML
     private ObservableList<Tour> tourList;
@@ -53,7 +50,7 @@ public class TourListsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factory = HibernateUtil.getSessionFactory();
-        matour.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMatour()));
+        matour.setCellValueFactory(data -> new SimpleStringProperty(Integer.toString(data.getValue().getMatour())));
         tengoi.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTengoi()));
         maloaihinh.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMaloaihinh()));
         dacdiem.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDacdiem()));
@@ -61,7 +58,8 @@ public class TourListsController implements Initializable {
         tableListTours.setOnMouseClicked((MouseEvent e) ->{
             Tour selected = tableListTours.getSelectionModel().getSelectedItem();
             if (selected != null) {
-                matourtf.setText(selected.getMatour());
+                matourtf.setText(Integer.toString(selected.getMatour()));
+                matourtf.setEditable(false);
                 tengoitf.setText(selected.getTengoi());
                 maloaihinhtf.setText(selected.getMaloaihinh());
                 dacdiemtf.setText(selected.getDacdiem());
@@ -91,9 +89,9 @@ public class TourListsController implements Initializable {
     }
 
     public void handleUpdateTour(ActionEvent e1) {
-        Tour tour2 = new Tour(matourtf.getText(), tengoitf.getText(),  maloaihinhtf.getText(),dacdiemtf.getText());
+        Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(),  maloaihinhtf.getText(),dacdiemtf.getText());
         try {
-            TourDAO.update(tour2);
+            TourDAO.update(tour);
             loadData();
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,29 +99,26 @@ public class TourListsController implements Initializable {
     }
 
     public void handleInsertTour(ActionEvent e1) {
-        Tour tour2 = new Tour(matourtf.getText(), tengoitf.getText(),  maloaihinhtf.getText(),dacdiemtf.getText());
+        Tour tour = new Tour();
         try {
-            TourDAO.update(tour2);
+            tour.setTengoi(tengoitf.getText());
+            tour.setDacdiem(dacdiemtf.getText());
+            tour.setMaloaihinh(maloaihinhtf.getText());
+            TourDAO.insert(tour);
             loadData();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void handleDeleteTour(ActionEvent e1) {
+        Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(),  maloaihinhtf.getText(),dacdiemtf.getText());
+        try {
+            TourDAO.delete(tour);
+            loadData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-        //    public void addTour(String matour, String tengoi, String dacdiem) {
-//        Session session = factory.openSession();
-//        Transaction tx = null;
-//        try {
-//            tx = session.beginTransaction();
-//            Tour tour = new Tour(matour, tengoi, dacdiem, "");
-//            tx.commit();
-//        } catch (HibernateException e) {
-//            if (tx != null)
-//                tx.rollback();
-//            e.printStackTrace();
-//        } finally {
-//            session.close();
-//        }
-//    }
 }

@@ -27,7 +27,7 @@ public class TourDAO {
         return null;
     }
 
-    public static Tour getDetail(String matour) {
+    public static Tour getDetail(int matour) {
         Tour tour = null;
         factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -58,6 +58,16 @@ public class TourDAO {
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
             session.save(tour);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void delete(Tour tour){
+        if (tour != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.delete(tour);
             tx.commit();
             session.close();
         }
