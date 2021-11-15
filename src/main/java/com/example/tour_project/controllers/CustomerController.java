@@ -4,6 +4,7 @@ import com.example.tour_project.dao.CustomerDAO;
 import com.example.tour_project.dao.TourDAO;
 import com.example.tour_project.models.Customer;
 import com.example.tour_project.utils.HibernateUtil;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +30,7 @@ public class CustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factory = HibernateUtil.getSessionFactory();
-        makhachhang.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMakhachhang()));
+        makhachhang.setCellValueFactory(data -> new SimpleStringProperty(Integer.toString(data.getValue().getMakhachhang())));
         hoten.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getHoten()));
         cmnd.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCmnd()));
         diachi.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDiachi()));
