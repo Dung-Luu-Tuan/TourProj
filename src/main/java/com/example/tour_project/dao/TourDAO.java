@@ -1,5 +1,6 @@
 package com.example.tour_project.dao;
 
+import com.example.tour_project.models.Place;
 import com.example.tour_project.models.Tour;
 import com.example.tour_project.utils.HibernateUtil;
 import org.hibernate.HibernateException;
@@ -20,6 +21,20 @@ public class TourDAO {
         try {
             tours = session.createQuery("from Tour").list();
             return tours;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return null;
+    }
+
+    public static List<Place> listPlace() {
+        List<Place> places = null;
+        factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        try {
+            places = session.createQuery("from Place").list();
+            return places;
         } catch (HibernateException e) {
             e.printStackTrace();
         }
@@ -78,7 +93,3 @@ public class TourDAO {
         return formatter.format(price);
     }
 }
-
-
-//            ArrayList<TourPrice> tourPrices = new ArrayList<>(tour.getPrices());
-//            tour = new Tour(tour.getMatour(), tour.getLoaihinh(), tourPrices);

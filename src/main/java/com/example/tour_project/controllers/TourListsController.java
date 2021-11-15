@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -65,12 +66,17 @@ public class TourListsController implements Initializable {
                 dacdiemtf.setText(selected.getDacdiem());
             }
         });
+
     }
 
     private void loadData() {
         tourList = FXCollections.observableArrayList(TourDAO.listTour());
         tableListTours.getItems().clear();
         tableListTours.setItems(tourList);
+    }
+
+    public void handleRefresh(){
+        loadData();
     }
 
     public void gotoDetails(ActionEvent e) throws IOException {
@@ -104,8 +110,15 @@ public class TourListsController implements Initializable {
             tour.setTengoi(tengoitf.getText());
             tour.setDacdiem(dacdiemtf.getText());
             tour.setMaloaihinh(maloaihinhtf.getText());
-            TourDAO.insert(tour);
-            loadData();
+            if(Integer.toString(tour.getMatour()) != null){
+                Notifications.create()
+                        .title("Title Text")
+                        .text("Tour đã tồn tại")
+                        .showWarning();
+            } else {
+                TourDAO.insert(tour);
+                loadData();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

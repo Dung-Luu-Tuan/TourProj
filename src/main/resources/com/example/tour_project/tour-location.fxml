@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.TourLocationController">
+    <children>
+        <TableView id="tableLocation" fx:id="tableLocation" layoutX="26.0" layoutY="29.0" prefHeight="203.0" prefWidth="239.0">
+            <columns>
+                <TableColumn id="stt" fx:id="stt" prefWidth="46.0" text="STT" />
+                <TableColumn id="madiadiem" fx:id="madiadiem" prefWidth="192.0" text="Mã địa điểm" />
+                <TableColumn id="matour" fx:id="matour" visible="false" prefWidth="192.0" text="Mã địa điểm" />
+            </columns>
+        </TableView>
+        <TextField id="stttf" fx:id="stttf" layoutX="122.0" layoutY="249.0" prefHeight="32.0" prefWidth="206.0" />
+        <TextField id="matourtf" fx:id="matourtf" layoutX="122.0" layoutY="325.0" prefHeight="32.0" prefWidth="206.0" />
+        <TextField id="madiadiemtf " fx:id="madiadiemtf" layoutX="122.0" layoutY="325.0" prefHeight="32.0" prefWidth="206.0" />
+      <Label layoutX="26.0" layoutY="255.0" text="Số thứ tự">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="331.0" text="Mã địa điểm">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TableView id="tablePlace" fx:id="tablePlace" layoutX="313.0" layoutY="29.0" prefHeight="203.0" prefWidth="262.0">
+         <columns>
+            <TableColumn id="madiadiemtb" fx:id="madiadiemtb" prefWidth="103.0" text="Mã địa điểm" />
+            <TableColumn id="tendiadiemtb" fx:id="tendiadiemtb" prefWidth="158.0" text="Tên địa điểm" />
+         </columns>
+      </TableView>
+      <Button layoutX="388.0" onAction="#handleInsertLocation" layoutY="253.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Add" />
+      <Button layoutX="483.0" onAction="#goBack" layoutY="253.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="385.0" layoutY="329.0" mnemonicParsing="false" text="Update" />
+      <Button layoutX="483.0" layoutY="329.0" mnemonicParsing="false" text="Refresh" />
+    </children>
+</AnchorPane>

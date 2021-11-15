@@ -21,6 +21,7 @@ public class PlaceOrder implements Serializable {
     @Column(name = "madiadiem")
     private int madiadiem;
 
+    @Id
     @Column(name = "thutu")
     private int thutu;
 

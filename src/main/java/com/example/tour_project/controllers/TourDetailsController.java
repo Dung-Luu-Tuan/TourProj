@@ -68,8 +68,9 @@ public class TourDetailsController{
     @FXML
     private ObservableList<PlaceOrder> placeList;
 
+    Tour tour2 = null;
     public void setView(Tour tour) {
-        Tour tour2 = TourDAO.getDetail(tour.getMatour());
+        tour2 = TourDAO.getDetail(tour.getMatour());
 
         matour.setText(String.valueOf(tour.getMatour()));
         tengoi.setText(String.valueOf(tour.getTengoi()));
@@ -98,6 +99,20 @@ public class TourDetailsController{
         loader.setLocation(getClass().getResource("/com/example/tour_project/tour-lists.fxml"));
         Parent tourListParent = loader.load();
         Scene scene = new Scene(tourListParent);
+
+        stage.setScene(scene);
+    }
+
+    public void gotoDetails(ActionEvent e) throws IOException {
+        //lấy stage hiện tại
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/example/tour_project/tour-location.fxml"));
+        Parent tourLocationsParent = loader.load();
+        Scene scene = new Scene(tourLocationsParent);
+
+        TourLocationController controller = loader.getController();
+        controller.setView(tour2);
 
         stage.setScene(scene);
     }
