@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `place`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `place` (
-  `madiadiem` varchar(15) NOT NULL,
+  `madiadiem` int NOT NULL AUTO_INCREMENT,
   `tendiadiem` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`madiadiem`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `place` (
 
 LOCK TABLES `place` WRITE;
 /*!40000 ALTER TABLE `place` DISABLE KEYS */;
-INSERT INTO `place` VALUES ('DD001','Vũng Tàu'),('DD002','Nha Trang'),('DD003','Hà Nội'),('DD004','Huế');
+INSERT INTO `place` VALUES (1,'Vũng Tàu'),(2,'Nha Trang'),(3,'Hà Nội'),(4,'Huế');
 /*!40000 ALTER TABLE `place` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-11 20:40:38
+-- Dump completed on 2021-11-15 15:31:49

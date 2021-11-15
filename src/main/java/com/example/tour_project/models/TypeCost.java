@@ -19,7 +19,7 @@ public class TypeCost {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "maloaichiphi", unique = true, nullable = false, length = 45)
-    private String maloaichiphi;
+    private int maloaichiphi;
 
     @Column(name = "tenchiphi")
     private String tenchiphi;

@@ -19,7 +19,7 @@ public class Staff {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "manhanvien", unique = true, nullable = false, length = 45)
-    private String manhanvien;
+    private int manhanvien;
 
     @Column(name = "tennhanvien", length = 45)
     private String tennhanvien;

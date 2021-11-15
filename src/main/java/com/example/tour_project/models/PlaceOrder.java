@@ -15,11 +15,11 @@ import java.io.Serializable;
 public class PlaceOrder implements Serializable {
     @Id
     @Column(name ="matour")
-    private String matour;
+    private int matour;
 
     @Id
     @Column(name = "madiadiem")
-    private String madiadiem;
+    private int madiadiem;
 
     @Column(name = "thutu")
     private int thutu;

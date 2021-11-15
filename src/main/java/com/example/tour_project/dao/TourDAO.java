@@ -5,7 +5,9 @@ import com.example.tour_project.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class TourDAO {
@@ -25,7 +27,7 @@ public class TourDAO {
         return null;
     }
 
-    public static Tour getDetail(String matour) {
+    public static Tour getDetail(int matour) {
         Tour tour = null;
         factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -39,6 +41,41 @@ public class TourDAO {
         }
         session.close();
         return null;
+    }
+
+    public static void update(Tour tour){
+        if (tour != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.update(tour);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void insert(Tour tour){
+        if (tour != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.save(tour);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void delete(Tour tour){
+        if (tour != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.delete(tour);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static String priceWithoutDecimal (float price) {
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        return formatter.format(price);
     }
 }
 

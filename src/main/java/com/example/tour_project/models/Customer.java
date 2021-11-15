@@ -22,7 +22,7 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "makhachhang", unique = true, nullable = false, length = 45)
-    private String makhachhang;
+    private int makhachhang;
 
     @Column(name = "hoten", length = 45)
     private String hoten;

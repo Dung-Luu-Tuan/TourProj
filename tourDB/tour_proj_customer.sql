@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
-  `makhachhang` varchar(45) NOT NULL,
+  `makhachhang` int NOT NULL AUTO_INCREMENT,
   `hoten` varchar(45) DEFAULT NULL,
   `cmnd` varchar(45) DEFAULT NULL,
   `diachi` varchar(45) DEFAULT NULL,
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-11 20:40:37
+-- Dump completed on 2021-11-15 15:31:48

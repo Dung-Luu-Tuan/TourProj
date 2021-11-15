@@ -24,10 +24,10 @@ public class TouristGroup implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "madoan")
-    private String madoan;
+    private int madoan;
 
     @Column(name = "matour")
-    private String matour;
+    private int matour;
 
     @Column(name = "ngaykhoihanh")
     private Date ngaykhoihanh;

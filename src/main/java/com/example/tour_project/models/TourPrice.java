@@ -23,10 +23,10 @@ public class TourPrice implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "magia")
-    private String magia;
+    private int magia;
 
     @Column(name = "matour")
-    private String matour;
+    private int matour;
 
     @Column(name = "thanhtien")
     private float thanhtien;
