@@ -46,10 +46,16 @@ public class Tour implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<PlaceOrder> placeOrders;
 
-    public Tour(String matour, TypeTour loaihinh, ArrayList<TourPrice> prices, ArrayList<PlaceOrder> placeOrders) {
+//    public Tour(String matour, TypeTour loaihinh, ArrayList<TourPrice> prices, ArrayList<PlaceOrder> placeOrders) {
+//        this.matour = matour;
+//        this.loaihinh = loaihinh;
+//        this.prices = prices;
+//        this.placeOrders = placeOrders;
+//    }
+    public Tour(String matour, String tengoi, String maloaihinh, String dacdiem){
         this.matour = matour;
-        this.loaihinh = loaihinh;
-        this.prices = prices;
-        this.placeOrders = placeOrders;
+        this.tengoi = tengoi;
+        this.maloaihinh = maloaihinh;
+        this.dacdiem = dacdiem;
     }
 }

@@ -77,7 +77,7 @@ public class TourDetailsController{
         dacdiem.setText((String.valueOf(tour.getDacdiem())));
 
         magia.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf((data.getValue().getMagia()))));
-        thanhtien.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getThanhtien())));
+        thanhtien.setCellValueFactory(data -> new SimpleStringProperty(TourDAO.priceWithoutDecimal(data.getValue().getThanhtien())));
         thoigianbatdau.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getDateStart())));
         thoigianketthuc.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getDateEnd())));
 

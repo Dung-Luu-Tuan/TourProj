@@ -10,8 +10,8 @@ public class main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("tour-lists.fxml"));
-        stage.setTitle("detail tours");
-        Scene scene = new Scene(root,1000,700 );
+        stage.setTitle("Tour App");
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
