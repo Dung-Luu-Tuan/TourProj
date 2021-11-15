@@ -18,9 +18,8 @@
             <TableColumn id="quoctich" fx:id="quoctich" prefWidth="77.60001220703123" text="Quốc tịch" />
         </columns>
       </TableView>
-      <Button layoutX="118.0" layoutY="388.0" mnemonicParsing="false" text="Thêm" />
-      <Button layoutX="254.0" layoutY="388.0" mnemonicParsing="false" text="Sửa" />
-      <Button layoutX="399.0" layoutY="388.0" mnemonicParsing="false" text="Xóa" />
-      <Button layoutX="568.0" layoutY="388.0" mnemonicParsing="false" text="Tìm kiếm" />
+      <Button layoutX="121.0" layoutY="375.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="103.0" text="Thêm" />
+      <Button layoutX="335.0" layoutY="375.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="103.0" text="Sửa" />
+      <Button layoutX="550.0" layoutY="375.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="103.0" text="Xóa" />
    </children>
 </AnchorPane>
