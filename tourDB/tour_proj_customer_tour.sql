@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS `customer_tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer_tour` (
-  `madoan` varchar(45) NOT NULL,
-  `makhachhang` varchar(45) NOT NULL,
+  `madoan` int NOT NULL AUTO_INCREMENT,
+  `makhachhang` int NOT NULL,
   PRIMARY KEY (`madoan`,`makhachhang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-11 20:40:38
+-- Dump completed on 2021-11-15 15:31:47

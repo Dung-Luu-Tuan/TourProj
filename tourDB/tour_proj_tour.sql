@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tour` (
-  `matour` varchar(15) NOT NULL,
+  `matour` int NOT NULL AUTO_INCREMENT,
   `tengoi` varchar(45) DEFAULT NULL,
   `dacdiem` varchar(45) DEFAULT NULL,
   `maloaihinh` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`matour`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `tour` (
 
 LOCK TABLES `tour` WRITE;
 /*!40000 ALTER TABLE `tour` DISABLE KEYS */;
-INSERT INTO `tour` VALUES ('T001','Tour1','Tour đi biển','LH1'),('T002','Tour2','Tour đi núi','LH2'),('T003','Tour3','Tour đi chùa','LH3');
+INSERT INTO `tour` VALUES (1,'Tour4','Nghỉ dưỡng','5'),(2,'Tour5','Mạo hiểm','2'),(3,'Tour3','Tham quan','3');
 /*!40000 ALTER TABLE `tour` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-11 20:40:38
+-- Dump completed on 2021-11-15 15:31:48

@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS `place_order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `place_order` (
-  `matour` varchar(15) NOT NULL,
-  `madiadiem` varchar(45) NOT NULL,
+  `matour` int NOT NULL,
+  `madiadiem` int NOT NULL,
   `thutu` int NOT NULL,
   PRIMARY KEY (`matour`,`madiadiem`,`thutu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -36,7 +36,7 @@ CREATE TABLE `place_order` (
 
 LOCK TABLES `place_order` WRITE;
 /*!40000 ALTER TABLE `place_order` DISABLE KEYS */;
-INSERT INTO `place_order` VALUES ('T001','DD001',1),('T001','DD002',2),('T002','DD001',1),('T003','DD003',1),('T003','DD004',2);
+INSERT INTO `place_order` VALUES (1,1,1),(1,2,2),(2,1,1),(3,3,1),(3,4,2);
 /*!40000 ALTER TABLE `place_order` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-11 20:40:38
+-- Dump completed on 2021-11-15 15:31:49
