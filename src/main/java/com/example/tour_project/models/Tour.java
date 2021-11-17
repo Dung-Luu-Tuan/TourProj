@@ -52,6 +52,7 @@ public class Tour implements Serializable {
 //        this.prices = prices;
 //        this.placeOrders = placeOrders;
 //    }
+
     public Tour(int matour, String tengoi, String maloaihinh, String dacdiem){
         this.matour = matour;
         this.tengoi = tengoi;

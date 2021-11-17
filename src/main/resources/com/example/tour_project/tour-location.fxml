@@ -14,7 +14,7 @@
             <columns>
                 <TableColumn id="stt" fx:id="stt" prefWidth="46.0" text="STT" />
                 <TableColumn id="madiadiem" fx:id="madiadiem" prefWidth="192.0" text="Mã địa điểm" />
-                <TableColumn id="matour" fx:id="matour" visible="false" prefWidth="192.0" text="Mã địa điểm" />
+                <TableColumn id="matour" fx:id="matour" prefWidth="192.0" text="Mã địa điểm" visible="false" />
             </columns>
         </TableView>
         <TextField id="stttf" fx:id="stttf" layoutX="122.0" layoutY="249.0" prefHeight="32.0" prefWidth="206.0" />
@@ -36,9 +36,10 @@
             <TableColumn id="tendiadiemtb" fx:id="tendiadiemtb" prefWidth="158.0" text="Tên địa điểm" />
          </columns>
       </TableView>
-      <Button layoutX="388.0" onAction="#handleInsertLocation" layoutY="253.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Add" />
-      <Button layoutX="483.0" onAction="#goBack" layoutY="253.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="385.0" layoutY="329.0" mnemonicParsing="false" text="Update" />
-      <Button layoutX="483.0" layoutY="329.0" mnemonicParsing="false" text="Refresh" />
+      <Button id="addBtn" fx:id="addBtn" layoutX="388.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleInsertLocation" prefHeight="25.0" prefWidth="55.0" text="Add" />
+      <Button layoutX="494.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleDeleteLocation" text="Delete" />
+      <Button layoutX="385.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleUpdateLocation" text="Update" />
+      <Button layoutX="492.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleRefreshLocation" text="Refresh" />
+      <Button layoutX="443.0" layoutY="291.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="51.0" text="Back" />
     </children>
 </AnchorPane>

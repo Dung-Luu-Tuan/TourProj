@@ -28,20 +28,6 @@ public class TourDAO {
         return null;
     }
 
-    public static List<Place> listPlace() {
-        List<Place> places = null;
-        factory = HibernateUtil.getSessionFactory();
-        Session session = factory.openSession();
-        try {
-            places = session.createQuery("from Place").list();
-            return places;
-        } catch (HibernateException e) {
-            e.printStackTrace();
-        }
-        session.close();
-        return null;
-    }
-
     public static Tour getDetail(int matour) {
         Tour tour = null;
         factory = HibernateUtil.getSessionFactory();
