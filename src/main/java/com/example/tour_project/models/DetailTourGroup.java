@@ -31,4 +31,6 @@ public class DetailTourGroup {
     @OneToOne
     @JoinColumn(name = "madoan", nullable = false, insertable = false, updatable = false)
     private TouristGroup touristGroup;
+
+
 }
