@@ -23,7 +23,7 @@ public class Tour implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "matour", unique = true, nullable = false, length = 15)
-    private String matour;
+    private int matour;
 
     @Column(name = "tengoi", length = 45)
     private String tengoi;
@@ -51,7 +51,7 @@ public class Tour implements Serializable {
     private List<TouristGroup> touristGroups;
 
 
-    public Tour(String matour, TypeTour loaihinh, ArrayList<TourPrice> prices, ArrayList<PlaceOrder> placeOrders) {
+    public Tour(int matour, TypeTour loaihinh, ArrayList<TourPrice> prices, ArrayList<PlaceOrder> placeOrders) {
         this.matour = matour;
         this.loaihinh = loaihinh;
         this.prices = prices;

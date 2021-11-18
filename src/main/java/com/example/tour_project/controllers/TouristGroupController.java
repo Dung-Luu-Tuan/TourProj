@@ -52,8 +52,8 @@ public class TouristGroupController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factory = HibernateUtil.getSessionFactory();
 
-        madoan.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMadoan()));
-        matour.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMatour()));
+        madoan.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getMadoan())));
+        matour.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getMatour())));
         ngaykhoihanh.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getNgaykhoihanh())));
         ngayketthuc.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getNgayketthuc())));
 

@@ -25,7 +25,7 @@ public class TouristGroupDAO {
         return null;
     }
 
-    public static TouristGroup getDetails(String matour) {
+    public static TouristGroup getDetails(int matour) {
         TouristGroup tourGroup = null;
         factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
