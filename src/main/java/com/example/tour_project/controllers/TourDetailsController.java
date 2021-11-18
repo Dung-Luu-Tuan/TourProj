@@ -1,5 +1,6 @@
 package com.example.tour_project.controllers;
 
+import com.example.tour_project.dao.PriceDAO;
 import com.example.tour_project.dao.TourDAO;
 import com.example.tour_project.models.PlaceOrder;
 import com.example.tour_project.models.Tour;
@@ -21,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
 public class TourDetailsController{
@@ -82,9 +84,9 @@ public class TourDetailsController{
         dacdiem.setText((String.valueOf(tour.getDacdiem())));
 
         magia.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf((data.getValue().getMagia()))));
-        thanhtien.setCellValueFactory(data -> new SimpleStringProperty(TourDAO.priceWithoutDecimal(data.getValue().getThanhtien())));
-        thoigianbatdau.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getDateStart())));
-        thoigianketthuc.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getDateEnd())));
+        thanhtien.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.priceWithoutDecimal(data.getValue().getThanhtien())));
+        thoigianbatdau.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateStart())));
+        thoigianketthuc.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateEnd())));
 
         tourDetailList = FXCollections.observableArrayList(tour2.getPrices());
         tableListDetailTour.setItems(tourDetailList);
@@ -116,6 +118,20 @@ public class TourDetailsController{
         Scene scene = new Scene(tourLocationsParent);
 
         TourLocationController controller = loader.getController();
+        controller.setView(tour2);
+
+        stage.setScene(scene);
+    }
+
+    public void gotoPriceList(ActionEvent e) throws IOException {
+        //lấy stage hiện tại
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/example/tour_project/price-list.fxml"));
+        Parent tourLocationsParent = loader.load();
+        Scene scene = new Scene(tourLocationsParent);
+
+        PriceListController controller = loader.getController();
         controller.setView(tour2);
 
         stage.setScene(scene);

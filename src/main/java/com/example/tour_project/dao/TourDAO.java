@@ -74,8 +74,5 @@ public class TourDAO {
         }
     }
 
-    public static String priceWithoutDecimal (float price) {
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
-        return formatter.format(price);
-    }
+
 }

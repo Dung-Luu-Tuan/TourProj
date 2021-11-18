@@ -56,7 +56,7 @@ public class TourListsController implements Initializable {
         maloaihinh.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMaloaihinh()));
         dacdiem.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDacdiem()));
         loadData();
-        tableListTours.setOnMouseClicked((MouseEvent e) ->{
+        tableListTours.setOnMouseClicked((MouseEvent e) -> {
             Tour selected = tableListTours.getSelectionModel().getSelectedItem();
             if (selected != null) {
                 matourtf.setText(Integer.toString(selected.getMatour()));
@@ -79,10 +79,10 @@ public class TourListsController implements Initializable {
         dacdiemtf.clear();
     }
 
-    public void handleRefresh(){
-        try{
+    public void handleRefresh() {
+        try {
             loadData();
-        } catch (Exception e){
+        } catch (Exception e) {
             Notifications.create()
                     .title("Thông báo")
                     .text("Không có dữ liệu nào được làm mới")
@@ -92,7 +92,7 @@ public class TourListsController implements Initializable {
 
     public void gotoDetails(ActionEvent e) throws IOException {
         //lấy stage hiện tại
-        try{
+        try {
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
@@ -104,7 +104,7 @@ public class TourListsController implements Initializable {
             controller.setView(selected);
 
             stage.setScene(scene);
-        } catch (Exception e1){
+        } catch (Exception e1) {
             Notifications.create()
                     .title("Thông báo")
                     .text("Vui lòng chọn dữ liệu cần xem chi tiết")
@@ -115,7 +115,7 @@ public class TourListsController implements Initializable {
 
     public void handleUpdateTour() {
         try {
-            Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(),  maloaihinhtf.getText(),dacdiemtf.getText());
+            Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(), maloaihinhtf.getText(), dacdiemtf.getText());
             TourDAO.update(tour);
             loadData();
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class TourListsController implements Initializable {
             tour.setTengoi(tengoitf.getText());
             tour.setDacdiem(dacdiemtf.getText());
             tour.setMaloaihinh(maloaihinhtf.getText());
-            if((matourtf.getText()) == ""){
+            if ((matourtf.getText()) == "") {
                 TourDAO.insert(tour);
                 loadData();
             } else {
@@ -151,7 +151,7 @@ public class TourListsController implements Initializable {
 
     public void handleDeleteTour() {
         try {
-            Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(),  maloaihinhtf.getText(),dacdiemtf.getText());
+            Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(), maloaihinhtf.getText(), dacdiemtf.getText());
             TourDAO.delete(tour);
             loadData();
         } catch (Exception e) {
