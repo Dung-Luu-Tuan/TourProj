@@ -18,7 +18,7 @@
         </property>
 
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">6</property>
+        <property name="connection.pool_size">50</property>
         <property name="hibernate.dialect">
             org.hibernate.dialect.MySQLDialect
         </property>

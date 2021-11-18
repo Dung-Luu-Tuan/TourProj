@@ -19,7 +19,7 @@ public class Cost {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "machiphi", unique = true, nullable = false, length = 45)
-    private String machiphi;
+    private int machiphi;
 
     @Column(name = "madoan")
     private String madoan;

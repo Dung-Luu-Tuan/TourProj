@@ -22,7 +22,7 @@ public class Place implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "madiadiem")
-    private String madiadiem;
+    private int madiadiem;
 
     @Column(name = "tendiadiem")
     private String tendiadiem;

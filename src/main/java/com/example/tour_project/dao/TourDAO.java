@@ -1,11 +1,14 @@
 package com.example.tour_project.dao;
 
+import com.example.tour_project.models.Place;
 import com.example.tour_project.models.Tour;
 import com.example.tour_project.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class TourDAO {
@@ -25,7 +28,7 @@ public class TourDAO {
         return null;
     }
 
-    public static Tour getDetail(String matour) {
+    public static Tour getDetail(int matour) {
         Tour tour = null;
         factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -40,8 +43,36 @@ public class TourDAO {
         session.close();
         return null;
     }
+
+    public static void update(Tour tour){
+        if (tour != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.update(tour);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void insert(Tour tour){
+        if (tour != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.save(tour);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void delete(Tour tour){
+        if (tour != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.delete(tour);
+            tx.commit();
+            session.close();
+        }
+    }
+
+
 }
-
-
-//            ArrayList<TourPrice> tourPrices = new ArrayList<>(tour.getPrices());
-//            tour = new Tour(tour.getMatour(), tour.getLoaihinh(), tourPrices);

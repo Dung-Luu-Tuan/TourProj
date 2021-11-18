@@ -23,7 +23,7 @@ public class TypeTour implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "maloaihinh")
-    private String maloaihinh;
+    private int maloaihinh;
 
     @Column(name = "tenloaihinh")
     private String tenloaihinh;

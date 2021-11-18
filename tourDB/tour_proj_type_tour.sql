@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `type_tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `type_tour` (
-  `maloaihinh` varchar(15) NOT NULL,
+  `maloaihinh` int NOT NULL AUTO_INCREMENT,
   `tenloaihinh` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`maloaihinh`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `type_tour` (
 
 LOCK TABLES `type_tour` WRITE;
 /*!40000 ALTER TABLE `type_tour` DISABLE KEYS */;
-INSERT INTO `type_tour` VALUES ('LH1','Leo núi'),('LH2','Nhảy dù'),('LH3','Đi chùa'),('LH4','Đi rừng'),('LH5','Đi biển');
+INSERT INTO `type_tour` VALUES (1,'Leo núi'),(2,'Nhảy dù'),(3,'Đi chùa'),(4,'Đi rừng'),(5,'Đi biển');
 /*!40000 ALTER TABLE `type_tour` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-11 20:40:38
+-- Dump completed on 2021-11-15 15:31:46

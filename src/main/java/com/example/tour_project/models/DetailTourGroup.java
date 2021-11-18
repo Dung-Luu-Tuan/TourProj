@@ -17,7 +17,7 @@ public class DetailTourGroup {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "madoan", unique = true, nullable = false, length = 45)
-    private String madoan;
+    private int madoan;
 
     @Column(name = "hanhtrinh")
     private String hanhtrinh;

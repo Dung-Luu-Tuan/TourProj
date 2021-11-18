@@ -4,8 +4,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -15,7 +20,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "staff")
 @RequiredArgsConstructor
-public class Staff {
+public class Staff implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "manhanvien", unique = true, nullable = false, length = 45)
@@ -23,4 +28,18 @@ public class Staff {
 
     @Column(name = "tennhanvien", length = 45)
     private String tennhanvien;
+
+    @Column(name = "sodienthoai", length = 45)
+    private String sodienthoai;
+
+    @Column(name = "diachi", length = 45)
+    private String diachi;
+
+
+    public Staff(String manhanvien, String tennhanvien, String sodienthoai, String diachi) {
+        this.manhanvien = manhanvien;
+        this.tennhanvien = tennhanvien;
+        this.sodienthoai = sodienthoai;
+        this.diachi = diachi;
+    }
 }

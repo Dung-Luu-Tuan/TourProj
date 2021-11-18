@@ -18,11 +18,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class StaffAllocation implements Serializable {
     @Id
     @Column(name = "manhanvien", unique = true, nullable = false, length = 45)
-    private String manhanvien;
+    private int manhanvien;
 
     @Id
     @Column(name = "madoan", unique = true, nullable = false, length = 45)
-    private String madoan;
+    private int madoan;
 
     @Column(name = "nhiemvu")
     private String nhiemvu;

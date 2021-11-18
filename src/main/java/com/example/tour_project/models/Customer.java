@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 
@@ -16,11 +18,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "customer")
 @RequiredArgsConstructor
-public class Customer {
+public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "makhachhang", unique = true, nullable = false, length = 45)
-    private String makhachhang;
+    private int makhachhang;
 
     @Column(name = "hoten", length = 45)
     private String hoten;

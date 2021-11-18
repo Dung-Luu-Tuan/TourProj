@@ -20,11 +20,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class CustomerTour implements Serializable {
     @Id
     @Column(name = "madoan")
-    private String madoan;
+    private int madoan;
 
     @Id
     @Column(name = "makhachhang")
-    private String makhachhang;
+    private int makhachhang;
 
     @ManyToOne
     @JoinColumn(name = "madoan", nullable = false, insertable = false, updatable = false)

@@ -6,12 +6,18 @@ import java.util.List;
 import com.example.tour_project.dao.TourDAO;
 import com.example.tour_project.models.Tour;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,8 +28,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import org.hibernate.Transaction;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,68 +38,128 @@ public class TourListsController implements Initializable {
     private TableView<Tour> tableListTours;
 
     @FXML
-    private TableColumn<Tour, String> matour;
+    private TableColumn<Tour, String> matour, tengoi, maloaihinh, dacdiem;
 
     @FXML
-    private TableColumn<Tour, String> tengoi;
-
-    @FXML
-    private TableColumn<Tour, String> maloaihinh;
-
-    @FXML
-    private TableColumn<Tour, String> dacdiem;
+    private TextField tengoitf, maloaihinhtf, dacdiemtf, matourtf;
 
     @FXML
     private ObservableList<Tour> tourList;
 
-
     private static SessionFactory factory;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factory = HibernateUtil.getSessionFactory();
-        matour.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMatour()));
+        matour.setCellValueFactory(data -> new SimpleStringProperty(Integer.toString(data.getValue().getMatour())));
         tengoi.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTengoi()));
         maloaihinh.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMaloaihinh()));
         dacdiem.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDacdiem()));
         loadData();
+        tableListTours.setOnMouseClicked((MouseEvent e) -> {
+            Tour selected = tableListTours.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                matourtf.setText(Integer.toString(selected.getMatour()));
+                matourtf.setEditable(false);
+                tengoitf.setText(selected.getTengoi());
+                maloaihinhtf.setText(selected.getMaloaihinh());
+                dacdiemtf.setText(selected.getDacdiem());
+            }
+        });
+
     }
 
     private void loadData() {
         tourList = FXCollections.observableArrayList(TourDAO.listTour());
         tableListTours.getItems().clear();
         tableListTours.setItems(tourList);
+        matourtf.clear();
+        tengoitf.clear();
+        maloaihinhtf.clear();
+        dacdiemtf.clear();
+    }
+
+    public void handleRefresh() {
+        try {
+            loadData();
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Không có dữ liệu nào được làm mới")
+                    .showWarning();
+        }
     }
 
     public void gotoDetails(ActionEvent e) throws IOException {
         //lấy stage hiện tại
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
-        Parent tourDetailsParent = loader.load();
-        Scene scene = new Scene(tourDetailsParent);
+        try {
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
+            Parent tourDetailsParent = loader.load();
+            Scene scene = new Scene(tourDetailsParent);
 
-        TourDetailsController controller = loader.getController();
-        Tour selected = tableListTours.getSelectionModel().getSelectedItem();
-        controller.setView(selected);
+            TourDetailsController controller = loader.getController();
+            Tour selected = tableListTours.getSelectionModel().getSelectedItem();
+            controller.setView(selected);
 
-        stage.setScene(scene);
+            stage.setScene(scene);
+        } catch (Exception e1) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần xem chi tiết")
+                    .showWarning();
+        }
+
     }
 
-    //    public void addTour(String matour, String tengoi, String dacdiem) {
-//        Session session = factory.openSession();
-//        Transaction tx = null;
-//        try {
-//            tx = session.beginTransaction();
-//            Tour tour = new Tour(matour, tengoi, dacdiem, "");
-//            tx.commit();
-//        } catch (HibernateException e) {
-//            if (tx != null)
-//                tx.rollback();
-//            e.printStackTrace();
-//        } finally {
-//            session.close();
-//        }
-//    }
+    public void handleUpdateTour() {
+        try {
+            Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(), maloaihinhtf.getText(), dacdiemtf.getText());
+            TourDAO.update(tour);
+            loadData();
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần update")
+                    .showWarning();
+        }
+    }
+
+    public void handleInsertTour() {
+        Tour tour = new Tour();
+        try {
+            tour.setTengoi(tengoitf.getText());
+            tour.setDacdiem(dacdiemtf.getText());
+            tour.setMaloaihinh(maloaihinhtf.getText());
+            if ((matourtf.getText()) == "") {
+                TourDAO.insert(tour);
+                loadData();
+            } else {
+                Notifications.create()
+                        .title("Thông báo")
+                        .text("Tour đã tồn tại")
+                        .showWarning();
+            }
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng nhập dữ liệu cần thêm")
+                    .showWarning();
+        }
+    }
+
+    public void handleDeleteTour() {
+        try {
+            Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(), maloaihinhtf.getText(), dacdiemtf.getText());
+            TourDAO.delete(tour);
+            loadData();
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần xóa")
+                    .showWarning();
+        }
+    }
+
 }
