@@ -1,5 +1,6 @@
 package com.example.tour_project.controllers;
 
+import com.example.tour_project.dao.PriceDAO;
 import com.example.tour_project.dao.TourDAO;
 import com.example.tour_project.models.PlaceOrder;
 import com.example.tour_project.models.Tour;
@@ -10,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,6 +21,9 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Date;
+import java.util.ResourceBundle;
 
 public class TourDetailsController{
 
@@ -68,8 +73,10 @@ public class TourDetailsController{
     @FXML
     private ObservableList<PlaceOrder> placeList;
 
+    Tour tourInit;
+    Tour tour2 = null;
     public void setView(Tour tour) {
-        Tour tour2 = TourDAO.getDetail(tour.getMatour());
+        tour2 = TourDAO.getDetail(tour.getMatour());
 
         matour.setText(String.valueOf(tour.getMatour()));
         tengoi.setText(String.valueOf(tour.getTengoi()));
@@ -77,9 +84,9 @@ public class TourDetailsController{
         dacdiem.setText((String.valueOf(tour.getDacdiem())));
 
         magia.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf((data.getValue().getMagia()))));
-        thanhtien.setCellValueFactory(data -> new SimpleStringProperty(TourDAO.priceWithoutDecimal(data.getValue().getThanhtien())));
-        thoigianbatdau.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getDateStart())));
-        thoigianketthuc.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getDateEnd())));
+        thanhtien.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.priceWithoutDecimal(data.getValue().getThanhtien())));
+        thoigianbatdau.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateStart())));
+        thoigianketthuc.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateEnd())));
 
         tourDetailList = FXCollections.observableArrayList(tour2.getPrices());
         tableListDetailTour.setItems(tourDetailList);
@@ -101,4 +108,33 @@ public class TourDetailsController{
 
         stage.setScene(scene);
     }
+
+    public void gotoDetails(ActionEvent e) throws IOException {
+        //lấy stage hiện tại
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/example/tour_project/tour-location.fxml"));
+        Parent tourLocationsParent = loader.load();
+        Scene scene = new Scene(tourLocationsParent);
+
+        TourLocationController controller = loader.getController();
+        controller.setView(tour2);
+
+        stage.setScene(scene);
+    }
+
+    public void gotoPriceList(ActionEvent e) throws IOException {
+        //lấy stage hiện tại
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/example/tour_project/price-list.fxml"));
+        Parent tourLocationsParent = loader.load();
+        Scene scene = new Scene(tourLocationsParent);
+
+        PriceListController controller = loader.getController();
+        controller.setView(tour2);
+
+        stage.setScene(scene);
+    }
+
 }

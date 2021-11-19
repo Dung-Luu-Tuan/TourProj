@@ -14,11 +14,11 @@
             root
         </property>
         <property name="hibernate.connection.password">
-            tien123
+            master
         </property>
 
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">6</property>
+        <property name="connection.pool_size">50</property>
         <property name="hibernate.dialect">
             org.hibernate.dialect.MySQLDialect
         </property>

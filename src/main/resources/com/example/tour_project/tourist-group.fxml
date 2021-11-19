@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.TouristGroupController">
+   <children>
+      <TableView id="tableListGroup" fx:id="tableListGroup" layoutX="34.0" layoutY="48.0" prefHeight="268.0" prefWidth="561.0">
+        <columns>
+          <TableColumn id="madoan" fx:id="madoan" prefWidth="75.0" text="Mã đoàn" />
+          <TableColumn id="matour" fx:id="matour" prefWidth="75.0" text="Mã tour"  visible="false" />
+            <TableColumn id="ngaykhoihanh" fx:id="ngaykhoihanh" prefWidth="174.0" text="Ngày khởi hành" />
+            <TableColumn id="ngayketthuc" fx:id="ngayketthuc" prefWidth="153.0" text="Ngày kết thúc" />
+            <TableColumn id="doanhthu" fx:id="doanhthu" minWidth="0.0" prefWidth="96.0" text="Doanh thu" />
+        </columns>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TableView>
+      <Button id="detailGroup" onAction="#gotoDetails" layoutX="34.0" layoutY="336.0" mnemonicParsing="false" text="Chi tiết" />
+   </children>
+</AnchorPane>

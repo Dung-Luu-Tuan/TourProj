@@ -1,6 +1,7 @@
 package com.example.tour_project.dao;
 
 import com.example.tour_project.models.Place;
+import com.example.tour_project.models.PlaceOrder;
 import com.example.tour_project.models.Tour;
 import com.example.tour_project.utils.HibernateUtil;
 import org.hibernate.HibernateException;
@@ -8,19 +9,18 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
-public class TourDAO {
+public class LocationDAO {
     private static SessionFactory factory;
 
-    public static List<Tour> listTour() {
-        List<Tour> tours = null;
+    public static List<PlaceOrder> listLocation() {
+        List<PlaceOrder> placeOrders = null;
         factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         try {
-            tours = session.createQuery("from Tour").list();
-            return tours;
+            placeOrders = session.createQuery("from PlaceOrder").list();
+            return placeOrders;
         } catch (HibernateException e) {
             e.printStackTrace();
         }
@@ -28,51 +28,36 @@ public class TourDAO {
         return null;
     }
 
-    public static Tour getDetail(int matour) {
-        Tour tour = null;
-        factory = HibernateUtil.getSessionFactory();
-        Session session = factory.openSession();
-        session.clear();
-        try {
-            session.beginTransaction();
-            tour = session.find(Tour.class, matour);
-            return tour;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        session.close();
-        return null;
-    }
-
-    public static void update(Tour tour){
-        if (tour != null) {
+    public static void insert(PlaceOrder placeOrder){
+        if (placeOrder != null) {
+            factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
-            session.update(tour);
+            session.save(placeOrder);
             tx.commit();
             session.close();
         }
     }
 
-    public static void insert(Tour tour){
-        if (tour != null) {
+    public static void delete(PlaceOrder placeOrder){
+        if (placeOrder != null) {
+            factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
-            session.save(tour);
+            session.delete(placeOrder);
             tx.commit();
             session.close();
         }
     }
 
-    public static void delete(Tour tour){
-        if (tour != null) {
+    public static void update(PlaceOrder placeOrder){
+        if (placeOrder != null) {
+            factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
-            session.delete(tour);
+            session.saveOrUpdate(placeOrder);
             tx.commit();
             session.close();
         }
     }
-
-
 }

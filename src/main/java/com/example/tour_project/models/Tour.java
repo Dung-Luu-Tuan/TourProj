@@ -45,13 +45,14 @@ public class Tour implements Serializable {
     @OneToMany(mappedBy = "tour")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<PlaceOrder> placeOrders;
-
+//
 //    public Tour(String matour, TypeTour loaihinh, ArrayList<TourPrice> prices, ArrayList<PlaceOrder> placeOrders) {
 //        this.matour = matour;
 //        this.loaihinh = loaihinh;
 //        this.prices = prices;
 //        this.placeOrders = placeOrders;
 //    }
+
     public Tour(int matour, String tengoi, String maloaihinh, String dacdiem){
         this.matour = matour;
         this.tengoi = tengoi;

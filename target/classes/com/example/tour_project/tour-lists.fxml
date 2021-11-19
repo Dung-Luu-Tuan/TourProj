@@ -20,19 +20,15 @@
             </columns>
         </TableView>
         <Button fx:id="tourDetails" layoutX="33.0" layoutY="427.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Details" />
-        <Button id="add" fx:id="tourDetails1" layoutX="161.0" layoutY="427.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Add" />
-        <Button id="delete" fx:id="tourDetails111" layoutX="289.0" layoutY="427.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Delete" />
+        <Button id="add" fx:id="add" layoutX="161.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleInsertTour" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Add" />
+        <Button id="delete" fx:id="delete" layoutX="289.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleDeleteTour" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Delete" />
+        <TextField id="matourtf" fx:id="matourtf" editable="false" layoutX="526.0" layoutY="93.0" prefHeight="32.0" prefWidth="157.0" />
         <TextField id="tengoitf" fx:id="tengoitf" layoutX="526.0" layoutY="153.0" prefHeight="32.0" prefWidth="157.0" />
         <TextField id="dacdiemtf" fx:id="dacdiemtf" layoutX="526.0" layoutY="216.0" prefHeight="32.0" prefWidth="157.0" />
         <TextField id="maloaihinhtf" fx:id="maloaihinhtf" layoutX="526.0" layoutY="284.0" prefHeight="32.0" prefWidth="157.0" />
-        <Label id="matourtf" layoutX="425.0" layoutY="99.0" text="Mã tour">
+        <Label layoutX="425.0" layoutY="99.0" text="Mã tour">
             <font>
                 <Font name="System Bold" size="14.0" />
-            </font>
-        </Label>
-        <Label fx:id="matourtf" layoutX="526.0" layoutY="99.0" prefHeight="20.0" prefWidth="157.0">
-            <font>
-                <Font size="14.0" />
             </font>
         </Label>
         <Label layoutX="425.0" layoutY="159.0" text="Tên gọi">
@@ -51,6 +47,7 @@
             </font>
         </Label>
       <Button id="update" fx:id="update" layoutX="161.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleUpdateTour" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Update" />
+      <Button id="refresh" fx:id="refresh" layoutX="33.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Refresh" />
     </children>
     <opaqueInsets>
         <Insets />

@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -55,7 +56,7 @@ public class TourListsController implements Initializable {
         maloaihinh.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMaloaihinh()));
         dacdiem.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDacdiem()));
         loadData();
-        tableListTours.setOnMouseClicked((MouseEvent e) ->{
+        tableListTours.setOnMouseClicked((MouseEvent e) -> {
             Tour selected = tableListTours.getSelectionModel().getSelectedItem();
             if (selected != null) {
                 matourtf.setText(Integer.toString(selected.getMatour()));
@@ -65,59 +66,99 @@ public class TourListsController implements Initializable {
                 dacdiemtf.setText(selected.getDacdiem());
             }
         });
+
     }
 
     private void loadData() {
         tourList = FXCollections.observableArrayList(TourDAO.listTour());
         tableListTours.getItems().clear();
         tableListTours.setItems(tourList);
+        matourtf.clear();
+        tengoitf.clear();
+        maloaihinhtf.clear();
+        dacdiemtf.clear();
+    }
+
+    public void handleRefresh() {
+        try {
+            loadData();
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Không có dữ liệu nào được làm mới")
+                    .showWarning();
+        }
     }
 
     public void gotoDetails(ActionEvent e) throws IOException {
         //lấy stage hiện tại
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
-        Parent tourDetailsParent = loader.load();
-        Scene scene = new Scene(tourDetailsParent);
+        try {
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
+            Parent tourDetailsParent = loader.load();
+            Scene scene = new Scene(tourDetailsParent);
 
-        TourDetailsController controller = loader.getController();
-        Tour selected = tableListTours.getSelectionModel().getSelectedItem();
-        controller.setView(selected);
+            TourDetailsController controller = loader.getController();
+            Tour selected = tableListTours.getSelectionModel().getSelectedItem();
+            controller.setView(selected);
 
-        stage.setScene(scene);
+            stage.setScene(scene);
+        } catch (Exception e1) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần xem chi tiết")
+                    .showWarning();
+        }
+
     }
 
-    public void handleUpdateTour(ActionEvent e1) {
-        Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(),  maloaihinhtf.getText(),dacdiemtf.getText());
+    public void handleUpdateTour() {
         try {
+            Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(), maloaihinhtf.getText(), dacdiemtf.getText());
             TourDAO.update(tour);
             loadData();
         } catch (Exception e) {
-            e.printStackTrace();
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần update")
+                    .showWarning();
         }
     }
 
-    public void handleInsertTour(ActionEvent e1) {
+    public void handleInsertTour() {
         Tour tour = new Tour();
         try {
             tour.setTengoi(tengoitf.getText());
             tour.setDacdiem(dacdiemtf.getText());
             tour.setMaloaihinh(maloaihinhtf.getText());
-            TourDAO.insert(tour);
-            loadData();
+            if ((matourtf.getText()) == "") {
+                TourDAO.insert(tour);
+                loadData();
+            } else {
+                Notifications.create()
+                        .title("Thông báo")
+                        .text("Tour đã tồn tại")
+                        .showWarning();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng nhập dữ liệu cần thêm")
+                    .showWarning();
         }
     }
 
-    public void handleDeleteTour(ActionEvent e1) {
-        Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(),  maloaihinhtf.getText(),dacdiemtf.getText());
+    public void handleDeleteTour() {
         try {
+            Tour tour = new Tour(Integer.parseInt(matourtf.getText()), tengoitf.getText(), maloaihinhtf.getText(), dacdiemtf.getText());
             TourDAO.delete(tour);
             loadData();
         } catch (Exception e) {
-            e.printStackTrace();
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần xóa")
+                    .showWarning();
         }
     }
 

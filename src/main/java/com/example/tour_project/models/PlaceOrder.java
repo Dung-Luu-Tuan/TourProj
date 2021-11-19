@@ -21,6 +21,7 @@ public class PlaceOrder implements Serializable {
     @Column(name = "madiadiem")
     private int madiadiem;
 
+    @Id
     @Column(name = "thutu")
     private int thutu;
 
@@ -32,4 +33,9 @@ public class PlaceOrder implements Serializable {
     @JoinColumn(name = "matour", nullable = false, insertable = false, updatable = false)
     private Tour tour;
 
+    public PlaceOrder(int matour, int madiadiem, int thutu) {
+        this.matour = matour;
+        this.madiadiem = madiadiem;
+        this.thutu = thutu;
+    }
 }

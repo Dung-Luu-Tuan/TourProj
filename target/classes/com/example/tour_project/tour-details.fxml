@@ -36,7 +36,7 @@
             <Font name="System Bold" size="14.0" />
          </font></Label>
         <Label fx:id="maloaihinh" layoutX="448.0" layoutY="23.0" prefHeight="17.0" prefWidth="184.0" />
-        <Button layoutX="581.0" layoutY="204.0" mnemonicParsing="false" onAction="#goBack" prefHeight="45.0" prefWidth="82.0" style="-fx-background-color: #0BD3D0;" text="Back" textOverrun="WORD_ELLIPSIS" />
+        <Button layoutX="555.0" layoutY="188.0" mnemonicParsing="false" onAction="#gotoPriceList" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #0BD3D0;" text="Price Table" textOverrun="WORD_ELLIPSIS" />
         <TableView id="tableListDetailTour" fx:id="tableListDetailTour" layoutX="23.0" layoutY="349.0" prefHeight="216.0" prefWidth="673.0">
             <columns>
                 <TableColumn id="magia" fx:id="magia" prefWidth="152.0" text="Mã giá" />
@@ -45,6 +45,7 @@
                 <TableColumn id="thoigianketthuc" fx:id="thoigianketthuc" prefWidth="140.0" text="Thời gian kết thúc" />
             </columns>
         </TableView>
-      <Button layoutX="460.0" layoutY="204.0" mnemonicParsing="false" onAction="#goBack" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #0BD3D0;" text="Edit" textOverrun="WORD_ELLIPSIS" />
+      <Button layoutX="429.0" layoutY="188.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="45.0" prefWidth="103.0" style="-fx-background-color: #0BD3D0;" text="Location Table" textOverrun="WORD_ELLIPSIS" />
+      <Button layoutX="488.0" layoutY="267.0" mnemonicParsing="false" onAction="#goBack" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #0BD3D0;" text="Back" textOverrun="WORD_ELLIPSIS" />
     </children>
 </AnchorPane>
