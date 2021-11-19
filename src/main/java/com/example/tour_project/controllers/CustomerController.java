@@ -18,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import org.hibernate.SessionFactory;
@@ -31,6 +33,8 @@ public class CustomerController implements Initializable {
     private TableView<Customer> tableCustomersList;
     @FXML
     private TableColumn<Customer, String> makhachhang, hoten, cmnd, diachi, gioitinh, sdt, quoctich;
+    @FXML
+    private TextField makhachhangtf, hotentf, cmndtf, diachitf, gioitinhtf, sdttf, quoctichtf;
     @FXML
     private ObservableList<Customer> customersList;
 
@@ -47,22 +51,92 @@ public class CustomerController implements Initializable {
         sdt.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSdt()));
         quoctich.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getQuoctich()));
         loadData();
-    }
+        tableCustomersList.setOnMouseClicked((MouseEvent e) -> {
+            Customer selected = tableCustomersList.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                makhachhangtf.setText(Integer.toString(selected.getMakhachhang()));
+                makhachhangtf.setEditable(false);
+                hotentf.setText(selected.getHoten());
+                cmndtf.setText(selected.getCmnd());
+                diachitf.setText(selected.getDiachi());
+                gioitinhtf.setText(selected.getGioitinh());
+                sdttf.setText(selected.getSdt());
+                quoctichtf.setText(selected.getQuoctich());
+            }
+        });
+        }
     private void loadData() {
-        customersList = FXCollections.observableArrayList(CustomerDAO.listTour());
+        customersList = FXCollections.observableArrayList(CustomerDAO.listCustomer());
         tableCustomersList.getItems().clear();
         tableCustomersList.setItems(customersList);
+        makhachhangtf.clear();
+        hotentf.clear();
+        cmndtf.clear();
+        diachitf.clear();
+        gioitinhtf.clear();
+        sdttf.clear();
+        quoctichtf.clear();
     }
-    public void addCustomer(ActionEvent e) throws IOException {
-        //lấy stage hiện tại
-
-            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/example/tour_project/customer-add.fxml"));
-            Parent tourDetailsParent = loader.load();
-            Scene scene = new Scene(tourDetailsParent);
-            stage.setScene(scene);
-
+    public void handleRefresh() {
+        try {
+            loadData();
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Không có dữ liệu nào được làm mới")
+                    .showWarning();
+        }
 
     }
+    public void handleInsertCustomer() {
+        Customer customer = new Customer();
+        try {
+            customer.setHoten(hotentf.getText());
+            customer.setCmnd(cmndtf.getText());
+            customer.setDiachi(diachitf.getText());
+            customer.setGioitinh(gioitinhtf.getText());
+            customer.setSdt(sdttf.getText());
+            customer.setQuoctich(quoctichtf.getText());
+            if ((makhachhangtf.getText()) == "") {
+                CustomerDAO.insert(customer);
+                loadData();
+            } else {
+                Notifications.create()
+                        .title("Thông báo")
+                        .text("Tour đã tồn tại")
+                        .showWarning();
+            }
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng nhập dữ liệu cần thêm")
+                    .showWarning();
+        }
+    }
+    public void handleDeleteCustomer() {
+        try {
+            Customer customer = new Customer(Integer.parseInt(makhachhangtf.getText()), hotentf.getText(), cmndtf.getText(), diachitf.getText(), gioitinhtf.getText(), quoctichtf.getText(),sdttf.getText());
+            CustomerDAO.delete(customer);
+            loadData();
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần xóa")
+                    .showWarning();
+        }
+    }
+    public void handleUpdateTour() {
+        try {
+            Customer customer = new Customer(Integer.parseInt(makhachhangtf.getText()), hotentf.getText(), cmndtf.getText(), diachitf.getText(), gioitinhtf.getText(), quoctichtf.getText(),sdttf.getText());
+            CustomerDAO.update(customer);
+            loadData();
+        } catch (Exception e) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần update")
+                    .showWarning();
+        }
+    }
+
 }
+
