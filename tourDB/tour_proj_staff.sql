@@ -25,6 +25,8 @@ DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
   `manhanvien` int NOT NULL AUTO_INCREMENT,
   `tennhanvien` varchar(45) DEFAULT NULL,
+  `sodienthoai` varchar(45) DEFAULT NULL,
+  `diachi` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`manhanvien`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
