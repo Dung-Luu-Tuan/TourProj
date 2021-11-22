@@ -6,6 +6,7 @@ import com.example.tour_project.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -39,5 +40,35 @@ public class TouristGroupDAO {
         }
         session.close();
         return null;
+    }
+
+    public static void update(TouristGroup tourGroup) {
+        if (tourGroup != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.update(tourGroup);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void insert(TouristGroup tourgroup){
+        if (tourgroup != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.save(tourgroup);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void delete(TouristGroup tourgroup){
+        if (tourgroup != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.delete(tourgroup);
+            tx.commit();
+            session.close();
+        }
     }
 }
