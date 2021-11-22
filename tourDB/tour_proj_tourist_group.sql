@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: tour_proj
+-- Host: 127.0.0.1    Database: tour_proj
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -29,7 +29,7 @@ CREATE TABLE `tourist_group` (
   `ngayketthuc` datetime DEFAULT NULL,
   `doanhthu` float DEFAULT NULL,
   PRIMARY KEY (`madoan`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `tourist_group` (
 
 LOCK TABLES `tourist_group` WRITE;
 /*!40000 ALTER TABLE `tourist_group` DISABLE KEYS */;
-INSERT INTO `tourist_group` VALUES (1,3,'2022-02-01 00:00:00','2022-02-03 00:00:00',NULL),(2,1,'2022-01-01 00:00:00','2022-01-04 00:00:00',NULL),(3,2,'2022-02-01 00:00:00','2022-02-03 00:00:00',NULL);
+INSERT INTO `tourist_group` VALUES (1,3,'2022-03-03 00:00:00','2022-06-03 00:00:00',NULL),(2,1,'2022-01-01 00:00:00','2022-01-04 00:00:00',NULL),(3,2,'2022-02-01 00:00:00','2022-02-05 00:00:00',NULL);
 /*!40000 ALTER TABLE `tourist_group` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-15 15:31:48
+-- Dump completed on 2021-11-22 14:10:21
