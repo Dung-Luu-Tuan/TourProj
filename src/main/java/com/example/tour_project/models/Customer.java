@@ -41,4 +41,14 @@ public class Customer implements Serializable {
 
     @Column(name = "quoctich", length = 45)
     private String quoctich;
+
+    public Customer(int makhachhang, String hoten, String cmnd, String diachi, String gioitinh,String sdt, String quoctich){
+        this.makhachhang = makhachhang;
+        this.hoten = hoten;
+        this.cmnd = cmnd;
+        this.diachi = diachi;
+        this.gioitinh= gioitinh;
+        this.sdt=sdt;
+        this.quoctich=quoctich;
+    }
 }
