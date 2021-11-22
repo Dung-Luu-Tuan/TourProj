@@ -1,11 +1,10 @@
 package com.example.tour_project.controllers;
 
+import com.example.tour_project.dao.CustomerTourDAO;
 import com.example.tour_project.dao.PriceDAO;
 import com.example.tour_project.dao.TourDAO;
 import com.example.tour_project.dao.TouristGroupDAO;
-import com.example.tour_project.models.Tour;
-import com.example.tour_project.models.TourPrice;
-import com.example.tour_project.models.TouristGroup;
+import com.example.tour_project.models.*;
 import com.example.tour_project.utils.HibernateUtil;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -26,10 +25,12 @@ import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.Query;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -39,15 +40,14 @@ public class TouristGroupController implements Initializable {
     private TableColumn<TouristGroup, String> madoan, tengoi, matour, ngaykhoihanh, ngayketthuc;
 
     @FXML
-    private TextField madoantf, matourtf, ngaykhoihanhtf, ngayketthuctf;
+    private TextField madoantf, matourtf, ngaykhoihanhtf, ngayketthuctf, doanhthutf;
 
     @FXML
     private TableColumn<Tour, String> tourID, tourName ;
 
     @FXML
-    private  TableColumn<TourPrice, String> startDay, endDay;
-//    @FXML
-//    private TableColumn<TouristGroup, Float> doanhthu;
+    private  TableColumn<TourPrice, String> startDay, endDay, matourPrice, priceTour;
+
     @FXML
     private TableView<TouristGroup> tableListGroup;
 
@@ -63,14 +63,16 @@ public class TouristGroupController implements Initializable {
     @FXML
     private ObservableList<TourPrice> tourPrices;
 
+    @FXML
+    private TableView<TourPrice> tablePrice;
+
+    @FXML
+    private ObservableList<TourPrice> priceTourList;
+
     private static SessionFactory factory;
 
-
-
-
-
-    SimpleDateFormat formatToDate = new SimpleDateFormat("yyyy-MM-dd");
-
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    float doanhthu2;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factory = HibernateUtil.getSessionFactory();
@@ -78,25 +80,51 @@ public class TouristGroupController implements Initializable {
         madoan.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getMadoan())));
         matour.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getMatour())));
         tengoi.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTour().getTengoi()));
-        ngaykhoihanh.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getNgaykhoihanh())));
-        ngayketthuc.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getNgayketthuc())));
+        ngaykhoihanh.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getNgaykhoihanh())));
+        ngayketthuc.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getNgayketthuc())));
 
         tourID.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getMatour())));
         tourName.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTengoi()));
-//        startDay.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getDateStart())));
-//        endDay.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getDateEnd())));
-//        doanhthu.setCellValueFactory(new PropertyValueFactory<TouristGroup, Float>("doanhthu"));
         loadData();
+
+        startDay.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateStart())));
+        endDay.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateEnd())));
+        matourPrice.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getMatour())));
+        priceTour.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.priceWithoutDecimal(data.getValue().getThanhtien())));
 
         tableListGroup.setOnMouseClicked((MouseEvent e) -> {
             TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
+            Tour tour = TourDAO.getDetail(selected.getMatour());
+            TouristGroup touristGroup = TouristGroupDAO.getDetailsByCustomer(selected.getMadoan());
+            Float price = null;
+
+            for (TourPrice tourPrice : tour.getPrices()) {
+                if (tourPrice.getDateStart().equals(selected.getNgaykhoihanh())) {
+                    price = tourPrice.getThanhtien();
+                    break;
+                }
+            }
+
+            int result = (int) (touristGroup.getCustomerTour().size()*price);
             if (selected != null) {
                 madoantf.setText(Integer.toString(selected.getMadoan()));
                 madoantf.setEditable(false);
+                doanhthutf.setEditable(false);
                 matourtf.setText(Integer.toString(selected.getMatour()));
                 ngaykhoihanhtf.setText(String.valueOf(selected.getNgaykhoihanh()));
-                ngayketthuctf.setText(String.valueOf(selected.getNgayketthuc()));
-                //doanhthu
+                ngayketthuctf.setText(String.valueOf(selected.getNgayketthuc()));;
+                doanhthu2 = Float.parseFloat(String.valueOf(result));
+                doanhthutf.setText(String.valueOf(result));
+            }
+        });
+
+        tableTour.setOnMouseClicked((MouseEvent e) -> {
+            Tour selected = tableTour.getSelectionModel().getSelectedItem();
+            if(selected != null){
+                Tour tourPrice = TourDAO.getDetail(selected.getMatour());
+                priceTourList = FXCollections.observableArrayList(tourPrice.getPrices());
+                tablePrice.getItems().clear();
+                tablePrice.setItems(priceTourList);
             }
         });
     }
@@ -109,15 +137,15 @@ public class TouristGroupController implements Initializable {
         tour = FXCollections.observableArrayList(TourDAO.listTour());
         tableTour.getItems().clear();
         tableTour.setItems(tour);
+        clear();
+    }
 
-//        tourPrices = FXCollections.observableArrayList(PriceDAO.listLocation());
-//        tableTour.getItems().clear();
-//        tableTour.setItems(tourPrices);
-
+    public void clear(){
         madoantf.clear();
         matourtf.clear();
         ngaykhoihanhtf.clear();
         ngayketthuctf.clear();
+        doanhthutf.clear();
     }
 
     public void handleRefresh() {
@@ -156,12 +184,12 @@ public class TouristGroupController implements Initializable {
 
     public void handleUpdateTouristGroup() {
         try {
-
-            TouristGroup tourGroup = new TouristGroup(Integer.parseInt(madoantf.getText()), Integer.parseInt(matourtf.getText()), formatToDate.parse(ngaykhoihanhtf.getText()), formatToDate.parse(ngayketthuctf.getText()));
+            SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+            TouristGroup tourGroup = new TouristGroup(Integer.parseInt(madoantf.getText()), Integer.parseInt(matourtf.getText()), formatter1.parse(ngaykhoihanhtf.getText()), formatter1.parse(ngayketthuctf.getText()), doanhthu2);
             TouristGroupDAO.update(tourGroup);
             loadData();
-
         } catch (Exception e) {
+            e.printStackTrace();
             Notifications.create()
                     .title("Thông báo")
                     .text("Vui lòng chọn dữ liệu cần update")
@@ -173,8 +201,8 @@ public class TouristGroupController implements Initializable {
         TouristGroup tourGroup = new TouristGroup();
         try {
             tourGroup.setMatour(Integer.parseInt(matourtf.getText()));
-            tourGroup.setNgaykhoihanh(formatToDate.parse(ngaykhoihanhtf.getText()));
-            tourGroup.setNgayketthuc(formatToDate.parse(ngayketthuctf.getText()));
+            tourGroup.setNgaykhoihanh(formatter.parse(ngaykhoihanhtf.getText()));
+            tourGroup.setNgayketthuc(formatter.parse(ngayketthuctf.getText()));
             if ((madoantf.getText()) == "") {
                 TouristGroupDAO.insert(tourGroup);
                 loadData();
@@ -195,7 +223,7 @@ public class TouristGroupController implements Initializable {
 
     public void handleDeleteTouristGroup() {
         try {
-            TouristGroup tourGroup = new TouristGroup(Integer.parseInt(madoantf.getText()), Integer.parseInt(matourtf.getText()), formatToDate.parse(ngaykhoihanhtf.getText()), formatToDate.parse(ngayketthuctf.getText()));
+            TouristGroup tourGroup = new TouristGroup(Integer.parseInt(madoantf.getText()), Integer.parseInt(matourtf.getText()), formatter.parse(ngaykhoihanhtf.getText()), formatter.parse(ngayketthuctf.getText()),doanhthu2);
             TouristGroupDAO.delete(tourGroup);
             loadData();
         } catch (Exception e) {

@@ -30,19 +30,22 @@ public class TouristGroup implements Serializable {
     private int matour;
 
     @Column(name = "ngaykhoihanh")
+    @Temporal(TemporalType.DATE)
     private Date ngaykhoihanh;
 
     @Column(name = "ngayketthuc")
+    @Temporal(TemporalType.DATE)
     private Date ngayketthuc;
 
-//    @Column(name = "doanhthu")
-//    private float doanhthu;
+    @Column(name = "doanhthu")
+    private float doanhthu;
 
-    public TouristGroup(int madoan, int matour, Date ngaykhoihanh, Date ngayketthuc) {
+    public TouristGroup(int madoan, int matour, Date ngaykhoihanh, Date ngayketthuc, float doanhthu) {
         this.madoan = madoan;
         this.matour = matour;
         this.ngaykhoihanh = ngaykhoihanh;
         this.ngayketthuc = ngayketthuc;
+        this.doanhthu = doanhthu;
     }
 
     @OneToOne(mappedBy = "touristGroup")
@@ -52,6 +55,7 @@ public class TouristGroup implements Serializable {
     @ManyToOne
     @JoinColumn(name = "matour", nullable = false, insertable = false, updatable = false)
     private Tour tour;
+
 //    @OneToMany(mappedBy = "touristGroup")
 //    @LazyCollection(LazyCollectionOption.FALSE)
 //    private List<TourPrice> tourPrice;

@@ -42,6 +42,22 @@ public class TouristGroupDAO {
         return null;
     }
 
+    public static TouristGroup getDetailsByCustomer(int madoan) {
+        TouristGroup tourGroup = null;
+        factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        session.clear();
+        try {
+            session.beginTransaction();
+            tourGroup = session.find(TouristGroup.class, madoan);
+            return tourGroup;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return null;
+    }
+
     public static void update(TouristGroup tourGroup) {
         if (tourGroup != null) {
             Session session = factory.openSession();

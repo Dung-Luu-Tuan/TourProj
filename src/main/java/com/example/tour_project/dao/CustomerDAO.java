@@ -26,6 +26,7 @@ public class CustomerDAO {
         session.close();
         return null;
     }
+
     public static void insert(Customer customer){
         if (customer != null) {
             Session session = factory.openSession();
