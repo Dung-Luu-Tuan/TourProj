@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: tour_proj
+-- Host: 127.0.0.1    Database: tour_proj
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -28,7 +28,7 @@ CREATE TABLE `detail_tour_group` (
   `khachsan` varchar(45) DEFAULT NULL,
   `diadiemthamquan` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`madoan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `detail_tour_group` (
 
 LOCK TABLES `detail_tour_group` WRITE;
 /*!40000 ALTER TABLE `detail_tour_group` DISABLE KEYS */;
+INSERT INTO `detail_tour_group` VALUES (1,'Bến xe miền đông - mũi né - châu đốc','Hoa hồng - Hoa Cúc - Hoa  Mai','Đồi cát - Chùa Bà'),(2,'Bến xa miền đông - Phú quốc','Phú quốc hotel','Bãi biễn phú quốc'),(3,'Bến xe Sài gòn - Tây Ninh','Tây ninh','Núi tây ninh- leo núi');
 /*!40000 ALTER TABLE `detail_tour_group` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-15 15:31:46
+-- Dump completed on 2021-11-22 14:10:21
