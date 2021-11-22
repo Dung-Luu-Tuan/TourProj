@@ -38,10 +38,12 @@ public class TouristGroup implements Serializable {
 //    @Column(name = "doanhthu")
 //    private float doanhthu;
 
-//    public final Date dateStart() {
-//        return ngaykhoihanh;
-//    }
-
+    public TouristGroup(int madoan, int matour, Date ngaykhoihanh, Date ngayketthuc) {
+        this.madoan = madoan;
+        this.matour = matour;
+        this.ngaykhoihanh = ngaykhoihanh;
+        this.ngayketthuc = ngayketthuc;
+    }
 
     @OneToOne(mappedBy = "touristGroup")
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -57,4 +59,6 @@ public class TouristGroup implements Serializable {
     @OneToMany(mappedBy = "touristGroup")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CustomerTour> customerTour;
+
+
 }
