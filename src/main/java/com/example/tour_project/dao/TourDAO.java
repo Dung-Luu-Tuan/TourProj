@@ -44,6 +44,7 @@ public class TourDAO {
         return null;
     }
 
+
     public static void update(Tour tour){
         if (tour != null) {
             Session session = factory.openSession();

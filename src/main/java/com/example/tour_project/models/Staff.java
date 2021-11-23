@@ -24,7 +24,7 @@ public class Staff implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "manhanvien", unique = true, nullable = false, length = 45)
-    private String manhanvien;
+    private int manhanvien;
 
     @Column(name = "tennhanvien", length = 45)
     private String tennhanvien;
@@ -36,7 +36,7 @@ public class Staff implements Serializable {
     private String diachi;
 
 
-    public Staff(String manhanvien, String tennhanvien, String sodienthoai, String diachi) {
+    public Staff(int manhanvien, String tennhanvien, String sodienthoai, String diachi) {
         this.manhanvien = manhanvien;
         this.tennhanvien = tennhanvien;
         this.sodienthoai = sodienthoai;

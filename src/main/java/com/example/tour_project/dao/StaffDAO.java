@@ -5,6 +5,7 @@ import com.example.tour_project.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -24,5 +25,35 @@ public class StaffDAO {
         }
         session.close();
         return null;
+    }
+
+    public static void update(Staff staff) {
+        if (staff != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.update(staff);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void insert(Staff staff) {
+        if (staff != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.save(staff);
+            tx.commit();
+            session.close();
+        }
+    }
+
+    public static void delete(Staff staff) {
+        if (staff != null) {
+            Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.delete(staff);
+            tx.commit();
+            session.close();
+        }
     }
 }
