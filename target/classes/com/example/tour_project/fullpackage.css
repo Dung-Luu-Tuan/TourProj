@@ -1,0 +1,14 @@
+.menu-button{
+-fx-background-color:  #234554;
+}
+
+.menu-button:hover{
+-fx-background-color: #4083a1;
+-fx-border-color: WHITE;
+-fx-border-width: 0px 0px 0px 3px;
+}
+
+.menu-button.active{
+-fx-border-color: WHITE;
+-fx-border-width: 0px 0px 0px 3px;
+}

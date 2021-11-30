@@ -9,29 +9,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="613.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.MainController">
+<AnchorPane prefHeight="613.0" prefWidth="987.0" stylesheets="@fullpackage.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.MainController">
    <children>
-      <VBox prefHeight="614.0" prefWidth="234.0" style="-fx-background-color: #234554;">
+      <VBox prefHeight="614.0" prefWidth="234.0" style="-fx-background-color: #234554;" stylesheets="@fullpackage.css">
          <children>
-            <Label alignment="CENTER" prefHeight="94.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="QUẢN LÝ TOUR" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="94.0" prefWidth="234.0" style="-fx-background-color: #234554;" stylesheets="@fullpackage.css" text="QUẢN LÝ TOUR" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="28.0" />
                </font></Label>
-            <Button id="btnTour" fx:id="btnTour" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="Tour du lịch" textFill="WHITE" wrapText="true">
+            <Button id="btnTour" fx:id="btnTour" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" styleClass="menu-button" stylesheets="@fullpackage.css" text="Tour du lịch" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
                <padding>
                   <Insets left="70.0" />
                </padding></Button>
-            <Button id="btnCustomer" fx:id="btnCustomer" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#customer" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="Khách hàng" textFill="WHITE" wrapText="true">
+            <Button id="btnCustomer" fx:id="btnCustomer" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#customer" prefHeight="64.0" prefWidth="234.0" styleClass="menu-button" stylesheets="@fullpackage.css" text="Khách hàng" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
                <padding>
                   <Insets left="70.0" />
                </padding></Button>
-            <Button id="btnTour" fx:id="btnTour1" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="Đoàn khách" textFill="WHITE" wrapText="true">
+            <Button id="btnTour" fx:id="btnTour1" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" stylesheets="@fullpackage.css" text="Đoàn khách" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Insets left="70.0" />
                </padding>
             </Button>
-            <Button id="btnTour" fx:id="btnTour2" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="Địa điểm" textFill="WHITE" wrapText="true">
+            <Button id="btnTour" fx:id="btnTour2" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" stylesheets="@fullpackage.css" text="Địa điểm" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Insets left="70.0" />
                </padding>
             </Button>
-            <Button id="btnTour" fx:id="btnTour3" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="Loại chi phí" textFill="WHITE" wrapText="true">
+            <Button id="btnTour" fx:id="btnTour3" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" stylesheets="@fullpackage.css" text="Loại chi phí" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
@@ -55,7 +55,7 @@
                   <Insets left="70.0" />
                </padding>
             </Button>
-            <Button id="btnTour" fx:id="btnTour4" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="Nhân viên" textFill="WHITE" wrapText="true">
+            <Button id="btnTour" fx:id="btnTour4" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" stylesheets="@fullpackage.css" text="Nhân viên" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Insets left="70.0" />
                </padding>
             </Button>
-            <Button id="btnTour" fx:id="btnTour5" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="Công việc" textFill="WHITE" wrapText="true">
+            <Button id="btnTour" fx:id="btnTour5" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" stylesheets="@fullpackage.css" text="Công việc" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
@@ -71,7 +71,7 @@
                   <Insets left="70.0" />
                </padding>
             </Button>
-            <Button id="btnTour" fx:id="btnTour6" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" text="Loại tour" textFill="WHITE" wrapText="true">
+            <Button id="btnTour" fx:id="btnTour6" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onAction="#tour" prefHeight="64.0" prefWidth="234.0" style="-fx-background-color: #234554;" stylesheets="@fullpackage.css" text="Loại tour" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>

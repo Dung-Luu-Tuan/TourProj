@@ -42,6 +42,7 @@ public class MainController implements Initializable {
         Parent root = loader.load();
         contentArena.getChildren().removeAll();
         contentArena.getChildren().setAll(root);
+        btnCustomer.getStyleClass().add("active");
     }
 
     @FXML
