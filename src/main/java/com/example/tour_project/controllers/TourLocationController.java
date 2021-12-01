@@ -91,11 +91,11 @@ public class TourLocationController {
             placeOrder.setMatour(Integer.parseInt(matourtf.getText()));
             placeOrder.setMadiadiem(Integer.parseInt(madiadiemtf.getText()));
             boolean flag = false;
-            newList = TourDAO.getDetail(tourSend.getMatour()).getPlaceOrders();
+            newList = getList();
             for (int i = 0; i < newList.size(); i++) {
                 if (Integer.parseInt(stttf.getText()) == newList.get(i).getThutu()) {
                     LocationDAO.insert(placeOrder);
-                    newList = TourDAO.getDetail(tourSend.getMatour()).getPlaceOrders();
+                    newList = getList();
                     flag = true;
                     for (int j = 0; j < newList.size(); j++) {
                         if (newList.get(j).getThutu() >= Integer.parseInt(stttf.getText()) &&
@@ -110,7 +110,7 @@ public class TourLocationController {
                     break;
                 }
             }
-            if (flag == false && newList.size()-Integer.parseInt(stttf.getText()) == 1) {
+            if (flag == false && Integer.parseInt(stttf.getText())-newList.size() == 1) {
                 LocationDAO.insert(placeOrder);
             } else {
                 Notifications.create()
@@ -131,17 +131,33 @@ public class TourLocationController {
 
     public void handleUpdateLocation() {
         try {
+            List<PlaceOrder> newList;
             PlaceOrder placeOrder = new PlaceOrder(Integer.parseInt(matourtf.getText()), Integer.parseInt(madiadiemtf.getText()), Integer.parseInt((stttf.getText())));
             PlaceOrder selected = tableLocation.getSelectionModel().getSelectedItem();
             if (placeOrder.getThutu() == selected.getThutu() &&
                     placeOrder.getMadiadiem() != selected.getMadiadiem()) {
-                LocationDAO.update(placeOrder);
-                LocationDAO.delete(selected);
+                newList= getList();
+                boolean flag = false;
+                for (int i = 0; i < newList.size(); i++) {
+                    if(placeOrder.getMadiadiem() == newList.get(i).getMadiadiem()){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(flag == false){
+                    LocationDAO.update(placeOrder);
+                    LocationDAO.delete(selected);
+                }else {
+                    Notifications.create()
+                            .title("Title Text")
+                            .text("Địa điểm đã có trong lộ trình")
+                            .showWarning();
+                }
             } else if ((placeOrder.getThutu() != selected.getThutu() &&
                     placeOrder.getMadiadiem() != selected.getMadiadiem()) ||
                     (placeOrder.getThutu() != selected.getThutu() &&
                     placeOrder.getMadiadiem() == selected.getMadiadiem())) {
-                List<PlaceOrder> newList = TourDAO.getDetail(tourSend.getMatour()).getPlaceOrders();
+                newList = getList();
                 for (int j = 0; j < newList.size(); j++) {
                     if (newList.get(j).getThutu() == Integer.parseInt((stttf.getText()))) {
                         PlaceOrder placeOrder2 = new PlaceOrder(Integer.parseInt(matourtf.getText()),
@@ -174,6 +190,10 @@ public class TourLocationController {
         tour = TourDAO.getDetail(tourSend.getMatour());
         tableLocation.setItems(FXCollections.observableArrayList(tour.getPlaceOrders()));
         tableLocation.getSortOrder().add(stt);
+    }
+
+    public List<PlaceOrder> getList(){
+        return TourDAO.getDetail(tourSend.getMatour()).getPlaceOrders();
     }
 
     public void handleDeleteLocation() {

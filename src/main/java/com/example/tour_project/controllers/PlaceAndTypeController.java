@@ -78,7 +78,7 @@ public class PlaceAndTypeController implements Initializable {
             Place place = new Place(Integer.parseInt(madiadiemtf.getText()), tendiadiemtf.getText());
             if ((madiadiemtf.getText()) == "") {
                 PlaceDAO.insert(place);
-                loadDataPlace();
+                handleRefreshPlace();
             } else {
                 Notifications.create()
                         .title("Thông báo")
@@ -98,7 +98,7 @@ public class PlaceAndTypeController implements Initializable {
         try {
             Place place = new Place(Integer.parseInt(madiadiemtf.getText()), tendiadiemtf.getText());
             PlaceDAO.delete(place);
-            loadDataPlace();
+            handleRefreshPlace();
         } catch (Exception e) {
             Notifications.create()
                     .title("Thông báo")
@@ -111,7 +111,7 @@ public class PlaceAndTypeController implements Initializable {
         try {
             Place place = new Place(Integer.parseInt(madiadiemtf.getText()), tendiadiemtf.getText());
             PlaceDAO.update(place);
-            loadDataPlace();
+            handleRefreshPlace();
         } catch (Exception e) {
             Notifications.create()
                     .title("Thông báo")
@@ -138,7 +138,7 @@ public class PlaceAndTypeController implements Initializable {
             TypeTour typeTour = new TypeTour(Integer.parseInt(maloaihinhtf.getText()), tenloaihinhtf.getText());
             if ((maloaihinhtf.getText()) == "") {
                 TypeTourDAO.insert(typeTour);
-                loadDataType();
+                handleRefreshType();
             } else {
                 Notifications.create()
                         .title("Thông báo")
@@ -158,7 +158,7 @@ public class PlaceAndTypeController implements Initializable {
         try {
             TypeTour typeTour = new TypeTour(Integer.parseInt(maloaihinhtf.getText()), tenloaihinhtf.getText());
             TypeTourDAO.delete(typeTour);
-            loadDataType();
+            handleRefreshType();
         } catch (Exception e) {
             Notifications.create()
                     .title("Thông báo")
@@ -171,7 +171,7 @@ public class PlaceAndTypeController implements Initializable {
         try {
             TypeTour typeTour = new TypeTour(Integer.parseInt(maloaihinhtf.getText()), tenloaihinhtf.getText());
             TypeTourDAO.update(typeTour);
-            loadDataType();
+            handleRefreshType();
         } catch (Exception e) {
             Notifications.create()
                     .title("Thông báo")

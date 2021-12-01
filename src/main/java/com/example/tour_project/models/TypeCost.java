@@ -28,4 +28,9 @@ public class TypeCost {
 
     @OneToMany(mappedBy = "typeCost", fetch = FetchType.LAZY)
     private List<Cost> costs;
+
+    public TypeCost(int maloaichiphi, String tenchiphi){
+        this.maloaichiphi = maloaichiphi;
+        this.tenchiphi= tenchiphi;
+    }
 }
