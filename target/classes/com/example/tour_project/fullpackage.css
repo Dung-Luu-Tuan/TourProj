@@ -8,7 +8,8 @@
 -fx-border-width: 0px 0px 0px 3px;
 }
 
-.menu-button.active{
+.menu-button:focused{
+-fx-background-color: #4083a1;
 -fx-border-color: WHITE;
 -fx-border-width: 0px 0px 0px 3px;
 }

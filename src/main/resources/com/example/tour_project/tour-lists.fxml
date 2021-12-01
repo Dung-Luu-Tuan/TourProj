@@ -19,15 +19,15 @@
                 <TableColumn id="dacdiem" fx:id="dacdiem" prefWidth="38.0" visible="true" />
             </columns>
         </TableView>
-        <Button fx:id="tourDetails" layoutX="90.0" layoutY="374.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="Details" textFill="#f2f2f2">
+        <Button fx:id="tourDetails" layoutX="90.0" layoutY="374.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="DETAILS" textFill="#f2f2f2">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-        <Button id="add" fx:id="add" layoutX="226.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleInsertTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="Add" textFill="WHITE">
+        <Button id="add" fx:id="add" layoutX="226.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleInsertTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-        <Button id="delete" fx:id="delete" layoutX="90.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleDeleteTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="Delete" textFill="WHITE">
+        <Button id="delete" fx:id="delete" layoutX="90.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleDeleteTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -55,11 +55,11 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button id="update" fx:id="update" layoutX="226.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleUpdateTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="Update" textFill="WHITE">
+        <Button id="update" fx:id="update" layoutX="226.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleUpdateTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="UPDATE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-        <Button id="refresh" fx:id="refresh" layoutX="383.0" layoutY="421.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Refresh" textFill="WHITE">
+        <Button id="refresh" fx:id="refresh" layoutX="383.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

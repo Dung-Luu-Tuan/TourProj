@@ -53,17 +53,43 @@ public class MainController implements Initializable {
         contentArena.getChildren().removeAll();
         contentArena.getChildren().setAll(root);
     }
-
     @FXML
-    private void handleClick(ActionEvent event) {
-        if (event.getSource() == btnCustomer) {
-            lbTittle.setText("Customer");
-            pnTittle.setBackground(new Background(new BackgroundFill(Color.rgb(63, 43, 99), CornerRadii.EMPTY, Insets.EMPTY)));
-        } else if (event.getSource() == btnTour) {
-            lbTittle.setText("Tour");
-            pnTittle.setBackground(new Background(new BackgroundFill(Color.rgb(3, 3, 8), CornerRadii.EMPTY, Insets.EMPTY)));
-        }
+    public void touristGroup(javafx.event.ActionEvent actionEvent) throws IOException{
+        lbTittle.setText("Đoàn khách");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/tourist-group.fxml"));
+        Parent root = loader.load();
+        contentArena.getChildren().removeAll();
+        contentArena.getChildren().setAll(root);
     }
+    @FXML
+    public void tourLocationAndTypeTour(javafx.event.ActionEvent actionEvent) throws IOException{
+        lbTittle.setText("Địa điểm và loại chi phí");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/place-and-type.fxml"));
+        Parent root = loader.load();
+        contentArena.getChildren().removeAll();
+        contentArena.getChildren().setAll(root);
+    }
+    @FXML
+    public void staff(javafx.event.ActionEvent actionEvent) throws IOException{
+        lbTittle.setText("Nhân viên");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/staff-lists.fxml"));
+        Parent root = loader.load();
+        contentArena.getChildren().removeAll();
+        contentArena.getChildren().setAll(root);
+    }
+
+
+
+//    @FXML
+//    private void handleClick(ActionEvent event) {
+//        if (event.getSource() == btnCustomer) {
+//            lbTittle.setText("Customer");
+//            pnTittle.setBackground(new Background(new BackgroundFill(Color.rgb(63, 43, 99), CornerRadii.EMPTY, Insets.EMPTY)));
+//        } else if (event.getSource() == btnTour) {
+//            lbTittle.setText("Tour");
+//            pnTittle.setBackground(new Background(new BackgroundFill(Color.rgb(3, 3, 8), CornerRadii.EMPTY, Insets.EMPTY)));
+//        }
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

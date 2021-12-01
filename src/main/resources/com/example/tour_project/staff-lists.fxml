@@ -26,7 +26,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-        <Button id="xoa" layoutX="788.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleDeleteStaff" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE" fx:id="xoa">
+        <Button id="xoa" layoutX="748.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleDeleteStaff" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE" fx:id="xoa">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -50,14 +50,9 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Text>
-        <Button id="refresh" fx:id="refresh" layoutX="789.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
+        <Button id="refresh" fx:id="refresh" layoutX="748.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button id="xoa" layoutX="683.0" layoutY="385.0" mnemonicParsing="false" onAction="#handleDeleteStaff" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #4CAF50;" text="BACK" textFill="WHITE" fx:id="xoa1">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
     </children>
 </AnchorPane>
