@@ -21,15 +21,15 @@
             <TableColumn id="quoctich" fx:id="quoctich" prefWidth="135.0" text="Quốc tịch" />
         </columns>
       </TableView>
-      <Button id="them" fx:id="them" layoutX="675.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleInsertCustomer" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="Thêm" textFill="WHITE">
+      <Button id="them" fx:id="them" layoutX="675.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleInsertCustomer" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button id="sua" fx:id="sua" layoutX="675.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleUpdateTour" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="Sửa" textFill="WHITE">
+      <Button id="sua" fx:id="sua" layoutX="675.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleUpdateTour" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="UPDATE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button id="xoa" layoutX="836.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleDeleteCustomer" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="Xóa" textFill="WHITE" fx:id="xoa">
+      <Button id="xoa" layoutX="836.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleDeleteCustomer" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE" fx:id="xoa">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -68,7 +68,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Text>
-      <Button id="refresh" fx:id="refresh" layoutX="837.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="Refresh" textFill="WHITE">
+      <Button id="refresh" fx:id="refresh" layoutX="836.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

@@ -8,75 +8,63 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.tour_project.controllers.TourLocationController">
+<AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.TourLocationController">
     <children>
-        <TableView id="tableLocation" fx:id="tableLocation" layoutX="26.0" layoutY="63.0" prefHeight="222.0"
-                   prefWidth="468.0">
+        <TableView id="tableLocation" fx:id="tableLocation" layoutX="26.0" layoutY="63.0" prefHeight="222.0" prefWidth="468.0">
             <columns>
-                <TableColumn id="stt" fx:id="stt" prefWidth="46.0" text="STT"/>
-                <TableColumn id="tendiadiem" fx:id="tendiadiem" prefWidth="192.0" text="Tên địa điểm"/>
-                <TableColumn id="matour" fx:id="matour" prefWidth="192.0" text="Mã tour" visible="false"/>
-                <TableColumn id="madiadiem" fx:id="madiadiem" prefWidth="229.0" text="Mã địa điểm"/>
+                <TableColumn id="stt" fx:id="stt" prefWidth="46.0" text="STT" />
+                <TableColumn id="tendiadiem" fx:id="tendiadiem" prefWidth="192.0" text="Tên địa điểm" />
+                <TableColumn id="matour" fx:id="matour" prefWidth="192.0" text="Mã tour" visible="false" />
+                <TableColumn id="madiadiem" fx:id="madiadiem" prefWidth="229.0" text="Mã địa điểm" />
             </columns>
         </TableView>
-        <TextField id="stttf" fx:id="stttf" layoutX="122.0" layoutY="338.0" prefHeight="32.0" prefWidth="332.0"/>
-        <TextField id="matourtf" fx:id="matourtf" layoutX="122.0" layoutY="421.0" prefHeight="32.0" prefWidth="206.0"/>
-        <TextField id="madiadiemtf " fx:id="madiadiemtf" layoutX="122.0" layoutY="421.0" prefHeight="32.0"
-                   prefWidth="332.0"/>
+        <TextField id="stttf" fx:id="stttf" layoutX="122.0" layoutY="338.0" prefHeight="32.0" prefWidth="332.0" />
+        <TextField id="matourtf" fx:id="matourtf" layoutX="122.0" layoutY="421.0" prefHeight="32.0" prefWidth="206.0" />
+        <TextField id="madiadiemtf " fx:id="madiadiemtf" layoutX="122.0" layoutY="421.0" prefHeight="32.0" prefWidth="332.0" />
         <Label layoutX="26.0" layoutY="344.0" text="Số thứ tự">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
         <Label layoutX="26.0" layoutY="427.0" text="Mã địa điểm">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <TableView id="tablePlace" fx:id="tablePlace" layoutX="582.0" layoutY="63.0" prefHeight="222.0"
-                   prefWidth="368.0">
+        <TableView id="tablePlace" fx:id="tablePlace" layoutX="582.0" layoutY="63.0" prefHeight="222.0" prefWidth="368.0">
             <columns>
-                <TableColumn id="madiadiemtb" fx:id="madiadiemtb" prefWidth="103.0" text="Mã địa điểm"/>
-                <TableColumn id="tendiadiemtb" fx:id="tendiadiemtb" prefWidth="264.0" text="Tên địa điểm"/>
+                <TableColumn id="madiadiemtb" fx:id="madiadiemtb" prefWidth="103.0" text="Mã địa điểm" />
+                <TableColumn id="tendiadiemtb" fx:id="tendiadiemtb" prefWidth="264.0" text="Tên địa điểm" />
             </columns>
         </TableView>
-        <Button id="addBtn" fx:id="addBtn" layoutX="594.0" layoutY="326.0" mnemonicParsing="false"
-                onAction="#handleInsertLocation" prefHeight="48.0" prefWidth="75.0"
-                style="-fx-background-color: #0B99D3;" text="Add" textFill="WHITE">
+        <Button id="addBtn" fx:id="addBtn" layoutX="633.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleInsertLocation" prefHeight="48.0" prefWidth="102.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="853.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleDeleteLocation"
-                prefHeight="48.0" prefWidth="75.0" style="-fx-background-color: #0B99D3;" text="Delete"
-                textFill="WHITE">
+        <Button layoutX="796.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleDeleteLocation" prefHeight="48.0" prefWidth="102.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="594.0" layoutY="425.0" mnemonicParsing="false" onAction="#handleUpdateLocation"
-                prefHeight="48.0" prefWidth="75.0" style="-fx-background-color: #0B99D3;" text="Update"
-                textFill="WHITE">
+        <Button layoutX="633.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleUpdateLocation" prefHeight="48.0" prefWidth="102.0" style="-fx-background-color: #0B99D3;" text="UPDATE" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="853.0" layoutY="425.0" mnemonicParsing="false" onAction="#handleRefreshLocation"
-                prefHeight="48.0" prefWidth="75.0" style="-fx-background-color: #0B99D3;" text="Refresh"
-                textFill="WHITE">
+        <Button layoutX="796.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleRefreshLocation" prefHeight="48.0" prefWidth="102.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Button>
         <Label layoutX="30.0" layoutY="14.0" prefHeight="32.0" prefWidth="117.0" text="LỘ TRÌNH TOUR: ">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
         <Label id="label" fx:id="label" layoutX="156.0" layoutY="20.0" prefHeight="20.0" prefWidth="117.0" text="Label">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
     </children>

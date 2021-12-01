@@ -8,67 +8,75 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.tour_project.controllers.PlaceAndTypeController">
+<AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.PlaceAndTypeController">
     <children>
-        <TableView fx:id="placeTable" id="placeTable" layoutX="47.0" layoutY="41.0" prefHeight="186.0"
-                   prefWidth="446.0">
+        <TableView id="placeTable" fx:id="placeTable" layoutX="47.0" layoutY="41.0" prefHeight="186.0" prefWidth="446.0">
             <columns>
-                <TableColumn id="madiadiem" fx:id="madiadiem" prefWidth="195.0" text="Mã địa điểm"/>
-                <TableColumn id="tendiadiem" fx:id="tendiadiem" prefWidth="251.0" text="Tên địa điểm"/>
+                <TableColumn id="madiadiem" fx:id="madiadiem" prefWidth="195.0" text="Mã địa điểm" />
+                <TableColumn id="tendiadiem" fx:id="tendiadiem" prefWidth="251.0" text="Tên địa điểm" />
             </columns>
         </TableView>
-        <TableView fx:id="typeTable" id="typeTable" layoutX="561.0" layoutY="41.0" prefHeight="186.0" prefWidth="400.0">
+        <TableView id="typeTable" fx:id="typeTable" layoutX="561.0" layoutY="41.0" prefHeight="186.0" prefWidth="400.0">
             <columns>
-                <TableColumn id="maloaihinh" fx:id="maloaihinh" prefWidth="165.0" text="Mã loại hình"/>
-                <TableColumn id="tenloaihinh" fx:id="tenloaihinh" prefWidth="234.0" text="Tên loại hình"/>
+                <TableColumn id="maloaihinh" fx:id="maloaihinh" prefWidth="165.0" text="Mã loại hình" />
+                <TableColumn id="tenloaihinh" fx:id="tenloaihinh" prefWidth="234.0" text="Tên loại hình" />
             </columns>
         </TableView>
         <Label layoutX="47.0" layoutY="260.0" prefHeight="28.0" prefWidth="90.0" text="Mã địa điểm">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
         <Label layoutX="47.0" layoutY="317.0" prefHeight="28.0" prefWidth="90.0" text="Tên địa điểm">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextField id="madiadiemtf" fx:id="madiadiemtf" editable="false" layoutX="176.0" layoutY="262.0"
-                   prefHeight="25.0" prefWidth="303.0"/>
-        <TextField id="tendiadiemtf" fx:id="tendiadiemtf" layoutX="176.0" layoutY="319.0" prefHeight="25.0"
-                   prefWidth="303.0"/>
+        <TextField id="madiadiemtf" fx:id="madiadiemtf" editable="false" layoutX="176.0" layoutY="262.0" prefHeight="25.0" prefWidth="303.0" />
+        <TextField id="tendiadiemtf" fx:id="tendiadiemtf" layoutX="176.0" layoutY="319.0" prefHeight="25.0" prefWidth="303.0" />
         <Label layoutX="561.0" layoutY="260.0" prefHeight="28.0" prefWidth="90.0" text="Mã loại hình">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
         <Label layoutX="561.0" layoutY="318.0" prefHeight="28.0" prefWidth="90.0" text="Tên loại hình">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextField id="maloaihinhtf" fx:id="maloaihinhtf" layoutX="655.0" layoutY="262.0" prefHeight="25.0" prefWidth="303.0"/>
-        <TextField id="tenloaihinhtf" fx:id="tenloaihinhtf" layoutX="655.0" layoutY="319.0" prefHeight="25.0" prefWidth="303.0"/>
-        <Button onAction="#handleInsertPlace" layoutX="137.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0"
-                prefWidth="70.0" text="ADD"/>
-        <Button onAction="#handleDeletePlace" layoutX="345.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0"
-                prefWidth="70.0" text="DELETE"/>
-        <Button onAction="#handleUpdatePlace" layoutX="137.0" layoutY="456.0" mnemonicParsing="false" prefHeight="38.0"
-                prefWidth="70.0" text="UPDATE"/>
-        <Button onAction="#handleRefreshPlace" layoutX="345.0" layoutY="456.0" mnemonicParsing="false" prefHeight="38.0"
-                prefWidth="70.0" text="REFRESH"/>
-        <Button onAction="#handleInsertType" layoutX="606.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0"
-                prefWidth="70.0" text="ADD"/>
-        <Button onAction="#handleDeleteType" layoutX="824.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0"
-                prefWidth="70.0"
-                text="DELETE"/>
-        <Button onAction="#handleRefreshType" layoutX="824.0" layoutY="456.0" mnemonicParsing="false" prefHeight="38.0"
-                prefWidth="70.0"
-                text="REFRESH"/>
-        <Button onAction="#handleUpdateType" layoutX="606.0" layoutY="456.0" mnemonicParsing="false" prefHeight="38.0"
-                prefWidth="70.0"
-                text="UPDATE"/>
+        <TextField id="maloaihinhtf" fx:id="maloaihinhtf" layoutX="655.0" layoutY="262.0" prefHeight="25.0" prefWidth="303.0" />
+        <TextField id="tenloaihinhtf" fx:id="tenloaihinhtf" layoutX="655.0" layoutY="319.0" prefHeight="25.0" prefWidth="303.0" />
+        <Button layoutX="199.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleInsertPlace" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="373.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleDeletePlace" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="199.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleUpdatePlace" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="UPDATE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="373.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleRefreshPlace" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="676.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleInsertType" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="859.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleDeleteType" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="859.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleRefreshType" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="676.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleUpdateType" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="UPDATE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
     </children>
 </AnchorPane>
