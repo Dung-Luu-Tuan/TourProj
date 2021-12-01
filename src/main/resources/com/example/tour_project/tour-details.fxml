@@ -7,45 +7,81 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.TourDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0"
+            prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.tour_project.controllers.TourDetailsController">
     <children>
-        <TableView id="tablePlace" fx:id="tablePlace" layoutX="23.0" layoutY="136.0" prefHeight="203.0" prefWidth="379.0">
+        <TableView id="tablePlace" fx:id="tablePlace" layoutX="34.0" layoutY="110.0" prefHeight="194.0"
+                   prefWidth="488.0">
             <columns>
-                <TableColumn id="stt" fx:id="stt" prefWidth="46.0" text="STT" />
-                <TableColumn id="madiadiem" fx:id="madiadiem" prefWidth="135.0" text="Mã địa điểm" />
-                <TableColumn id="tendiadiem" fx:id="tendiadiem" prefWidth="197.0" text="Tên địa điểm" />
+                <TableColumn id="stt" fx:id="stt" prefWidth="46.0" text="STT"/>
+                <TableColumn id="madiadiem" fx:id="madiadiem" prefWidth="135.0" text="Mã địa điểm"/>
+                <TableColumn id="tendiadiem" fx:id="tendiadiem" prefWidth="306.0" text="Tên địa điểm"/>
             </columns>
         </TableView>
-        <Label id="matour" graphicTextGap="6.0" layoutX="28.0" layoutY="21.0" prefHeight="17.0" prefWidth="119.0" text="Chi tiết tour:" textFill="#0a0a0a">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Label>
-        <Label fx:id="matour" layoutX="116.0" layoutY="23.0" prefHeight="17.0" prefWidth="88.0" />
-        <Label fx:id="tengoi" layoutX="95.0" layoutY="52.0" prefHeight="17.0" prefWidth="193.0" />
-        <Label id="tengoi" layoutX="28.0" layoutY="50.0" prefHeight="20.0" prefWidth="75.0" text="Tên tour:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Label>
-        <Label fx:id="dacdiem" layoutX="448.0" layoutY="52.0" prefHeight="17.0" prefWidth="193.0" />
-        <Label id="maloaihinh" layoutX="378.0" layoutY="21.0" prefHeight="20.0" prefWidth="119.0" text="Loại hình:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Label>
-        <Label id="dacdiem" layoutX="378.0" layoutY="50.0" prefHeight="20.0" prefWidth="119.0" text="Đặc điểm:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Label>
-        <Label fx:id="maloaihinh" layoutX="448.0" layoutY="23.0" prefHeight="17.0" prefWidth="184.0" />
-        <Button layoutX="555.0" layoutY="188.0" mnemonicParsing="false" onAction="#gotoPriceList" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #0BD3D0;" text="Price Table" textOverrun="WORD_ELLIPSIS" />
-        <TableView id="tableListDetailTour" fx:id="tableListDetailTour" layoutX="23.0" layoutY="349.0" prefHeight="216.0" prefWidth="673.0">
+        <Label id="matour" graphicTextGap="6.0" layoutX="36.0" layoutY="22.0" prefHeight="17.0" prefWidth="119.0"
+               text="CHI TIẾT TOUR: " textFill="#0a0a0a">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Label>
+        <Label fx:id="matour" layoutX="155.0" layoutY="23.0" prefHeight="17.0" prefWidth="88.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label fx:id="tengoi" layoutX="124.0" layoutY="51.0" prefHeight="17.0" prefWidth="193.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label id="tengoi" layoutX="36.0" layoutY="50.0" prefHeight="20.0" prefWidth="88.0" text="TÊN TOUR: ">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Label>
+        <Label fx:id="dacdiem" layoutX="470.0" layoutY="51.0" prefHeight="17.0" prefWidth="193.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label id="maloaihinh" layoutX="378.0" layoutY="21.0" prefHeight="20.0" prefWidth="119.0" text="LOẠI HÌNH:">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Label>
+        <Label id="dacdiem" layoutX="378.0" layoutY="50.0" prefHeight="20.0" prefWidth="119.0" text="ĐẶC ĐIỂM:">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Label>
+        <Label fx:id="maloaihinh" layoutX="474.0" layoutY="21.0" prefHeight="17.0" prefWidth="184.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Button layoutX="801.0" layoutY="166.0" mnemonicParsing="false" onAction="#gotoPriceList" prefHeight="45.0"
+                prefWidth="113.0" style="-fx-background-color: #0B99D3;" text="Price Table" textFill="WHITE"
+                textOverrun="WORD_ELLIPSIS">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <TableView id="tableListDetailTour" fx:id="tableListDetailTour" layoutX="34.0" layoutY="315.0"
+                   prefHeight="194.0" prefWidth="919.0">
             <columns>
-                <TableColumn id="magia" fx:id="magia" prefWidth="152.0" text="Mã giá" />
-                <TableColumn id="thanhtien" fx:id="thanhtien" prefWidth="106.0" text="Thành tiền" />
-                <TableColumn id="thoigianbatdau" fx:id="thoigianbatdau" prefWidth="272.0" text="Thời gian bắt đầu" />
-                <TableColumn id="thoigianketthuc" fx:id="thoigianketthuc" prefWidth="140.0" text="Thời gian kết thúc" />
+                <TableColumn id="magia" fx:id="magia" prefWidth="104.0" text="Mã giá"/>
+                <TableColumn id="thanhtien" fx:id="thanhtien" prefWidth="273.0" text="Thành tiền"/>
+                <TableColumn id="thoigianbatdau" fx:id="thoigianbatdau" prefWidth="280.0" text="Thời gian bắt đầu"/>
+                <TableColumn id="thoigianketthuc" fx:id="thoigianketthuc" prefWidth="261.0" text="Thời gian kết thúc"/>
             </columns>
         </TableView>
-      <Button layoutX="429.0" layoutY="188.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="45.0" prefWidth="103.0" style="-fx-background-color: #0BD3D0;" text="Location Table" textOverrun="WORD_ELLIPSIS" />
-      <Button layoutX="488.0" layoutY="267.0" mnemonicParsing="false" onAction="#goBack" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #0BD3D0;" text="Back" textOverrun="WORD_ELLIPSIS" />
+        <Button layoutX="601.0" layoutY="166.0" mnemonicParsing="false" onAction="#gotoLocations" prefHeight="45.0"
+                prefWidth="113.0" style="-fx-background-color: #0B99D3;" text="Location Table" textFill="WHITE"
+                textOverrun="WORD_ELLIPSIS">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
     </children>
 </AnchorPane>

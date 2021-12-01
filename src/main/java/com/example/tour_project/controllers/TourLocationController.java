@@ -15,10 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
@@ -31,7 +28,7 @@ public class TourLocationController {
     private TableView<PlaceOrder> tableLocation;
 
     @FXML
-    private TableColumn<PlaceOrder, String> stt, matour, madiadiem;
+    private TableColumn<PlaceOrder, String> stt, matour, madiadiem, tendiadiem;
 
     @FXML
     private ObservableList<PlaceOrder> locationList;
@@ -49,17 +46,23 @@ public class TourLocationController {
     private TextField stttf, madiadiemtf, matourtf;
 
     @FXML
+    private Label label;
+
+    @FXML
     private Button addBtn;
 
     Tour tourSend;
 
     public void setView(Tour tour) {
+        label.setText(String.valueOf(tour.getMatour()));
         stt.setCellValueFactory(data -> new SimpleStringProperty(Integer.toString(data.getValue().getThutu())));
         matour.setCellValueFactory(data -> new SimpleStringProperty(Integer.toString(data.getValue().getMatour())));
         madiadiem.setCellValueFactory(data -> new SimpleStringProperty(Integer.toString(data.getValue().getMadiadiem())));
+        tendiadiem.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPlace().getTendiadiem()));
 
         locationList = FXCollections.observableArrayList(tour.getPlaceOrders());
         tableLocation.setItems(locationList);
+        tableLocation.getSortOrder().add(stt);
 
         madiadiemtb.setCellValueFactory(data -> new SimpleStringProperty(Integer.toString(data.getValue().getMadiadiem())));
         tendiadiemtb.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTendiadiem()));
@@ -75,34 +78,50 @@ public class TourLocationController {
                 stttf.setText(Integer.toString(selected.getThutu()));
                 madiadiemtf.setText(Integer.toString(selected.getMadiadiem()));
                 matourtf.setText(Integer.toString(selected.getMatour()));
-                addBtn.setVisible(false);
+                addBtn.setDisable(true);
             }
         });
     }
 
-    public void goBack(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
-        Parent tourDetailsParent = loader.load();
-        Scene scene = new Scene(tourDetailsParent);
-
-        TourDetailsController controller = loader.getController();
-        controller.setView(tourSend);
-
-        stage.setScene(scene);
-    }
-
     public void handleInsertLocation() {
         PlaceOrder placeOrder = new PlaceOrder();
+        List<PlaceOrder> newList;
         try {
             placeOrder.setThutu(Integer.parseInt(stttf.getText()));
             placeOrder.setMatour(Integer.parseInt(matourtf.getText()));
             placeOrder.setMadiadiem(Integer.parseInt(madiadiemtf.getText()));
-            LocationDAO.insert(placeOrder);
+            boolean flag = false;
+            newList = TourDAO.getDetail(tourSend.getMatour()).getPlaceOrders();
+            for (int i = 0; i < newList.size(); i++) {
+                if (Integer.parseInt(stttf.getText()) == newList.get(i).getThutu()) {
+                    LocationDAO.insert(placeOrder);
+                    newList = TourDAO.getDetail(tourSend.getMatour()).getPlaceOrders();
+                    flag = true;
+                    for (int j = 0; j < newList.size(); j++) {
+                        if (newList.get(j).getThutu() >= Integer.parseInt(stttf.getText()) &&
+                                newList.get(j).getMadiadiem() != Integer.parseInt(madiadiemtf.getText())) {
+                            PlaceOrder placeOrder2 = new PlaceOrder(Integer.parseInt(matourtf.getText()),
+                                    newList.get(j).getMadiadiem(),
+                                    newList.get(j).getThutu() + 1);
+                            LocationDAO.update(placeOrder2);
+                            LocationDAO.delete(newList.get(j));
+                        }
+                    }
+                    break;
+                }
+            }
+            if (flag == false && newList.size()-Integer.parseInt(stttf.getText()) == 1) {
+                LocationDAO.insert(placeOrder);
+            } else {
+                Notifications.create()
+                        .title("Title Text")
+                        .text("Thứ tự tiếp theo không hợp lệ")
+                        .showWarning();
+            }
             clearTextField();
-            loadData(Integer.parseInt(matourtf.getText()));
-        } catch (Exception e){
+            loadData();
+        } catch (Exception e) {
+            e.printStackTrace();
             Notifications.create()
                     .title("Title Text")
                     .text("Vui lòng nhập dữ liệu")
@@ -115,36 +134,63 @@ public class TourLocationController {
             PlaceOrder placeOrder = new PlaceOrder(Integer.parseInt(matourtf.getText()), Integer.parseInt(madiadiemtf.getText()), Integer.parseInt((stttf.getText())));
             PlaceOrder selected = tableLocation.getSelectionModel().getSelectedItem();
             if (placeOrder.getThutu() == selected.getThutu() &&
-                    placeOrder.getMadiadiem() == selected.getMadiadiem()) {
+                    placeOrder.getMadiadiem() != selected.getMadiadiem()) {
+                LocationDAO.update(placeOrder);
+                LocationDAO.delete(selected);
+            } else if ((placeOrder.getThutu() != selected.getThutu() &&
+                    placeOrder.getMadiadiem() != selected.getMadiadiem()) ||
+                    (placeOrder.getThutu() != selected.getThutu() &&
+                    placeOrder.getMadiadiem() == selected.getMadiadiem())) {
+                List<PlaceOrder> newList = TourDAO.getDetail(tourSend.getMatour()).getPlaceOrders();
+                for (int j = 0; j < newList.size(); j++) {
+                    if (newList.get(j).getThutu() == Integer.parseInt((stttf.getText()))) {
+                        PlaceOrder placeOrder2 = new PlaceOrder(Integer.parseInt(matourtf.getText()),
+                                newList.get(j).getMadiadiem(),
+                                selected.getThutu());
+                        LocationDAO.update(placeOrder);
+                        LocationDAO.delete(newList.get(j));
+                        LocationDAO.update(placeOrder2);
+                        LocationDAO.delete(selected);
+                    }
+                }
+            } else {
                 Notifications.create()
                         .title("Title Text")
                         .text("Lộ trình đã tồn tại")
                         .showWarning();
-            } else {
-                LocationDAO.update(placeOrder);
-                LocationDAO.delete(selected);
-                clearTextField();
-                loadData(Integer.parseInt(matourtf.getText()));
             }
-        } catch (Exception e) {
-            Notifications.create()
-                    .title("Thông báo")
-                    .text("Vui lòng chọn dữ liệu cần update")
-                    .showWarning();
-        }
+            loadData();
+            clearTextField();
+    } catch(Exception e) {
+        Notifications.create()
+                .title("Thông báo")
+                .text("Vui lòng chọn dữ liệu cần update")
+                .showWarning();
     }
+}
 
-    public void loadData(int matour) {
+    public void loadData() {
         Tour tour;
-        tour = TourDAO.getDetail(matour);
+        tour = TourDAO.getDetail(tourSend.getMatour());
         tableLocation.setItems(FXCollections.observableArrayList(tour.getPlaceOrders()));
+        tableLocation.getSortOrder().add(stt);
     }
 
     public void handleDeleteLocation() {
         PlaceOrder selected = tableLocation.getSelectionModel().getSelectedItem();
         try {
             LocationDAO.delete(selected);
-            loadData(selected.getMatour());
+            List<PlaceOrder> newList = TourDAO.getDetail(tourSend.getMatour()).getPlaceOrders();
+            for (int j = 0; j < newList.size(); j++) {
+                if (newList.get(j).getThutu() > selected.getThutu()) {
+                    PlaceOrder placeOrder2 = new PlaceOrder(Integer.parseInt(matourtf.getText()),
+                            newList.get(j).getMadiadiem(),
+                            newList.get(j).getThutu() - 1);
+                    LocationDAO.update(placeOrder2);
+                    LocationDAO.delete(newList.get(j));
+                }
+            }
+            loadData();
             clearTextField();
         } catch (Exception e) {
             Notifications.create()
@@ -155,9 +201,10 @@ public class TourLocationController {
     }
 
     public void handleRefreshLocation() {
-        loadData(tourSend.getMatour());
+        loadData();
         clearTextField();
-        addBtn.setVisible(true);
+        addBtn.setDisable(false);
+        tableLocation.getSortOrder().add(stt);
     }
 
     public void clearTextField() {

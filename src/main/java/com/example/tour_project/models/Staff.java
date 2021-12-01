@@ -35,6 +35,10 @@ public class Staff implements Serializable {
     @Column(name = "diachi", length = 45)
     private String diachi;
 
+    @OneToMany(mappedBy = "staff")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<StaffAllocation> staffAllocations;
+
 
     public Staff(int manhanvien, String tennhanvien, String sodienthoai, String diachi) {
         this.manhanvien = manhanvien;

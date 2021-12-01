@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -73,7 +74,6 @@ public class TourDetailsController{
     @FXML
     private ObservableList<PlaceOrder> placeList;
 
-    Tour tourInit;
     Tour tour2 = null;
     public void setView(Tour tour) {
         tour2 = TourDAO.getDetail(tour.getMatour());
@@ -97,23 +97,12 @@ public class TourDetailsController{
 
         placeList = FXCollections.observableArrayList(tour2.getPlaceOrders());
         tablePlace.setItems(placeList);
+        tablePlace.getSortOrder().add(stt);
     }
 
-    public void goBack(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/example/tour_project/tour-lists.fxml"));
-        Parent tourListParent = loader.load();
-        Scene scene = new Scene(tourListParent);
-
-        stage.setScene(scene);
-    }
-
-    public void gotoDetails(ActionEvent e) throws IOException {
-        //lấy stage hiện tại
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/example/tour_project/tour-location.fxml"));
+    public void gotoLocations(ActionEvent e) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/tour-location.fxml"));
         Parent tourLocationsParent = loader.load();
         Scene scene = new Scene(tourLocationsParent);
 
@@ -121,13 +110,13 @@ public class TourDetailsController{
         controller.setView(tour2);
 
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
     public void gotoPriceList(ActionEvent e) throws IOException {
-        //lấy stage hiện tại
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/example/tour_project/price-list.fxml"));
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/price-list.fxml"));
         Parent tourLocationsParent = loader.load();
         Scene scene = new Scene(tourLocationsParent);
 
@@ -135,6 +124,8 @@ public class TourDetailsController{
         controller.setView(tour2);
 
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
 }

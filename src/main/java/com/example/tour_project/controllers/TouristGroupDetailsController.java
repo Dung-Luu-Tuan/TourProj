@@ -1,6 +1,7 @@
 package com.example.tour_project.controllers;
 
 import com.example.tour_project.dao.TouristGroupDAO;
+import com.example.tour_project.dao.TouristGroupDetailDAO;
 import com.example.tour_project.models.DetailTourGroup;
 import com.example.tour_project.models.Tour;
 import com.example.tour_project.models.TouristGroup;
@@ -16,7 +17,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 
@@ -31,43 +35,43 @@ public class TouristGroupDetailsController {
     Label labelMatour;
 
     @FXML
-    private TableColumn<DetailTourGroup, String> hanhtrinh;
+    private TextField hanhtrinhtf, khachsantf, diadiemtf;
 
-    @FXML
-    private TableColumn<DetailTourGroup, String> khachsan;
+    TouristGroup touristGroupSend;
+    public void setView(TouristGroup touristgroup) {
+        touristGroupSend = touristgroup;
+        TouristGroup touristgroupDetail = TouristGroupDAO.getDetails(touristgroup.getMadoan());
 
-    @FXML
-    private TableColumn<DetailTourGroup, String> diadiemthamquan;
+        labelMadoan.setText(String.valueOf(touristgroupDetail.getMadoan()));
+        labelMatour.setText(String.valueOf(touristgroupDetail.getMatour()));
+        labelTendoan.setText(String.valueOf(touristgroupDetail.getTour().getTengoi()));
 
-
-    @FXML
-    private TableView<DetailTourGroup> tableDetailListGroup;
-
-    @FXML
-    private ObservableList<DetailTourGroup> tourObservableList;
-
-    public void setView(TouristGroup group) {
-        TouristGroup group1 = TouristGroupDAO.getDetails(group.getMadoan());
-
-        labelMadoan.setText(String.valueOf(group.getMadoan()));
-        labelMatour.setText(String.valueOf(group.getMatour()));
-        labelTendoan.setText(String.valueOf(group1.getTour().getTengoi()));
-
-        hanhtrinh.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getHanhtrinh()));
-        khachsan.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getKhachsan()));
-        diadiemthamquan.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDiadiemthamquan()));
-
-        tourObservableList = FXCollections.observableArrayList(group1.getDetailTourGroup());
-        tableDetailListGroup.setItems(tourObservableList);
+        hanhtrinhtf.setText(touristgroupDetail.getDetailTourGroup().getHanhtrinh());
+        khachsantf.setText(touristgroupDetail.getDetailTourGroup().getKhachsan());
+        diadiemtf.setText(touristgroupDetail.getDetailTourGroup().getDiadiemthamquan());
     }
 
-    public void goBack(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/example/tour_project/tourist-group.fxml"));
-        Parent tourGroupParent = loader.load();
-        Scene scene = new Scene(tourGroupParent);
-
-        stage.setScene(scene);
+    public void handleUpdateDetail(){
+        DetailTourGroup detailTourGroup = new DetailTourGroup(touristGroupSend.getMadoan(),
+                hanhtrinhtf.getText(), khachsantf.getText(), diadiemtf.getText());
+        try{
+            if(String.valueOf(touristGroupSend.getMadoan()) != "" && hanhtrinhtf.getText() != "" &&
+                    khachsantf.getText() != "" &&
+                    diadiemtf.getText() != ""){
+                TouristGroupDetailDAO.update(detailTourGroup);
+                Notifications.create()
+                        .title("Thông báo")
+                        .text("Dữ liệu đã được thay đổi")
+                        .showWarning();
+            } else {
+                Notifications.create()
+                        .title("Thông báo")
+                        .text("Dữ liệu không được để trống")
+                        .showWarning();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 }

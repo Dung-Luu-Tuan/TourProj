@@ -9,45 +9,60 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="tourDetails" prefHeight="537.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.TourListsController">
+<AnchorPane id="tourDetails" prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.TourListsController">
     <children>
-        <TableView id="tableListTours" fx:id="tableListTours" layoutX="33.0" layoutY="36.0" prefHeight="348.0" prefWidth="351.0" style="-fx-background-color: #0BD3CD;">
+        <TableView id="tableListTours" fx:id="tableListTours" layoutX="46.0" layoutY="42.0" prefHeight="291.0" prefWidth="523.0" style="-fx-background-color: #0BD3CD;">
             <columns>
-                <TableColumn id="matour" fx:id="matour" prefWidth="106.0" text="Mã tour" />
-                <TableColumn id="tengoi" fx:id="tengoi" prefWidth="243.0" text="Tên gọi" />
-                <TableColumn id="maloaihinh" fx:id="maloaihinh" minWidth="0.0" prefWidth="105.0" text="Mã loại hình" visible="false" />
-                <TableColumn id="dacdiem" fx:id="dacdiem" minWidth="0.0" prefWidth="105.0" text="Mã loại hình" visible="false" />
+                <TableColumn id="matour" fx:id="matour" prefWidth="125.0" text="Mã tour" />
+                <TableColumn id="tengoi" fx:id="tengoi" prefWidth="398.0" text="Tên gọi" />
+                <TableColumn id="maloaihinh" fx:id="maloaihinh" minWidth="0.0" prefWidth="0.0" visible="true" />
+                <TableColumn id="dacdiem" fx:id="dacdiem" prefWidth="38.0" visible="true" />
             </columns>
         </TableView>
-        <Button fx:id="tourDetails" layoutX="33.0" layoutY="427.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Details" />
-        <Button id="add" fx:id="add" layoutX="161.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleInsertTour" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Add" />
-        <Button id="delete" fx:id="delete" layoutX="289.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleDeleteTour" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Delete" />
-        <TextField id="matourtf" fx:id="matourtf" editable="false" layoutX="526.0" layoutY="93.0" prefHeight="32.0" prefWidth="157.0" />
-        <TextField id="tengoitf" fx:id="tengoitf" layoutX="526.0" layoutY="153.0" prefHeight="32.0" prefWidth="157.0" />
-        <TextField id="dacdiemtf" fx:id="dacdiemtf" layoutX="526.0" layoutY="216.0" prefHeight="32.0" prefWidth="157.0" />
-        <TextField id="maloaihinhtf" fx:id="maloaihinhtf" layoutX="526.0" layoutY="284.0" prefHeight="32.0" prefWidth="157.0" />
-        <Label layoutX="425.0" layoutY="99.0" text="Mã tour">
+        <Button fx:id="tourDetails" layoutX="90.0" layoutY="374.0" mnemonicParsing="false" onAction="#gotoDetails" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="Details" textFill="#f2f2f2">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button id="add" fx:id="add" layoutX="226.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleInsertTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button id="delete" fx:id="delete" layoutX="90.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleDeleteTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <TextField id="matourtf" fx:id="matourtf" editable="false" layoutX="741.0" layoutY="83.0" prefHeight="32.0" prefWidth="222.0" />
+        <TextField id="tengoitf" fx:id="tengoitf" layoutX="741.0" layoutY="143.0" prefHeight="32.0" prefWidth="222.0" />
+        <TextField id="dacdiemtf" fx:id="dacdiemtf" layoutX="741.0" layoutY="216.0" prefHeight="32.0" prefWidth="222.0" />
+        <TextField id="maloaihinhtf" fx:id="maloaihinhtf" layoutX="741.0" layoutY="284.0" prefHeight="32.0" prefWidth="222.0" />
+        <Label layoutX="639.0" layoutY="89.0" text="Mã tour">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="425.0" layoutY="159.0" text="Tên gọi">
+        <Label layoutX="641.0" layoutY="149.0" text="Tên gọi">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="425.0" layoutY="222.0" prefHeight="20.0" prefWidth="87.0" text="Đặc điểm">
+        <Label layoutX="640.0" layoutY="222.0" prefHeight="20.0" prefWidth="87.0" text="Đặc điểm">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="425.0" layoutY="290.0" text="Mã loại hình">
+        <Label layoutX="639.0" layoutY="290.0" text="Mã loại hình">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button id="update" fx:id="update" layoutX="161.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleUpdateTour" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Update" />
-        <Button id="refresh" fx:id="refresh" layoutX="33.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Refresh" />
+        <Button id="update" fx:id="update" layoutX="226.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleUpdateTour" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0B99D3;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button id="refresh" fx:id="refresh" layoutX="383.0" layoutY="421.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #0BD348;" text="Refresh" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
     </children>
     <opaqueInsets>
         <Insets />

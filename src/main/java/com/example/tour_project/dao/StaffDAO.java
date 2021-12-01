@@ -1,6 +1,7 @@
 package com.example.tour_project.dao;
 
 import com.example.tour_project.models.Staff;
+import com.example.tour_project.models.StaffAllocation;
 import com.example.tour_project.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -21,6 +22,22 @@ public class StaffDAO {
             return staffs;
         }
         catch (HibernateException e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return null;
+    }
+
+    public static Staff getDetail(int madoan) {
+        Staff staff = null;
+        factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        session.clear();
+        try {
+            session.beginTransaction();
+            staff = session.find(Staff.class, madoan);
+            return staff;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         session.close();

@@ -15,10 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
@@ -45,7 +42,12 @@ public class PriceListController {
 
     Tour tourSend;
 
+    @FXML
+    private Label label;
+
+    SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
     public void setView(Tour tour) {
+        label.setText(String.valueOf(tour.getTengoi()));
         magia.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf((data.getValue().getMagia()))));
         thanhtien.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.priceWithoutDecimal(data.getValue().getThanhtien())));
         thoigianbatdau.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateStart())));
@@ -61,25 +63,12 @@ public class PriceListController {
             if (selected != null) {
                 magiatf.setText(Integer.toString(selected.getMagia()));
                 thanhtientf.setText(Float.toString(selected.getThanhtien()));
-                starttf.setText(String.valueOf(selected.getDateStart()));
-                endtf.setText(String.valueOf(selected.getDateEnd()));
+                starttf.setText(PriceDAO.DateFormat2((Date) selected.getDateStart()));
+                endtf.setText(PriceDAO.DateFormat2((Date) selected.getDateEnd()));
                 addBtn.setVisible(false);
                 magiatf.setEditable(false);
             }
         });
-    }
-
-    public void goBack(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
-        Parent tourDetailsParent = loader.load();
-        Scene scene = new Scene(tourDetailsParent);
-
-        TourDetailsController controller = loader.getController();
-        controller.setView(tourSend);
-
-        stage.setScene(scene);
     }
 
     public void loadData(int matour) {
@@ -89,7 +78,6 @@ public class PriceListController {
     }
 
     public void handleInsertPrice() {
-        SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
         TourPrice tourPrice = new TourPrice();
         try {
             tourPrice.setMatour(tourSend.getMatour());
@@ -140,7 +128,6 @@ public class PriceListController {
 
     public void handleUpdatePrice() {
         try {
-            SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
             TourPrice tourPrice = new TourPrice(Integer.parseInt(magiatf.getText()), tourSend.getMatour(), Float.parseFloat(thanhtientf.getText()), formatter1.parse(starttf.getText()), formatter1.parse(endtf.getText()));
             TourPrice selected = tablePrice.getSelectionModel().getSelectedItem();
             if (tourPrice.getThanhtien() == selected.getThanhtien() &&

@@ -29,4 +29,9 @@ public class CustomerTour implements Serializable {
     @ManyToOne
     @JoinColumn(name = "madoan", nullable = false, insertable = false, updatable = false)
     private TouristGroup touristGroup;
+
+    public CustomerTour(int madoan, int makhachhang){
+        this.madoan = madoan;
+        this.makhachhang = makhachhang;
+    }
 }

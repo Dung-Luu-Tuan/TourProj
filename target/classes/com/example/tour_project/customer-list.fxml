@@ -5,38 +5,72 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="524.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.CustomerController">
+<AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.CustomerController">
    <children>
-      <TableView id="tableCustomersList" fx:id="tableCustomersList" layoutY="8.0" prefHeight="250.0" prefWidth="774.0">
+      <TableView id="tableCustomersList" fx:id="tableCustomersList" layoutX="56.0" layoutY="14.0" prefHeight="250.0" prefWidth="901.0">
         <columns>
-          <TableColumn id="makhachhang" fx:id="makhachhang" prefWidth="99.19997787475586" text="Mã khách hàng" />
-          <TableColumn id="hoten" fx:id="hoten" prefWidth="140.0" text="Họ tên" />
-            <TableColumn id="cmnd" fx:id="cmnd" prefWidth="100.80000305175781" text="CMND" />
-            <TableColumn id="diachi" fx:id="diachi" prefWidth="186.39996337890625" text="Địa chỉ" />
-            <TableColumn id="gioitinh" fx:id="gioitinh" minWidth="0.0" prefWidth="64.0" text="Giới tính" />
-            <TableColumn id="sdt" fx:id="sdt" prefWidth="104.79998779296875" text="Số điện thoại" />
-            <TableColumn id="quoctich" fx:id="quoctich" prefWidth="77.60001220703123" text="Quốc tịch" />
+          <TableColumn id="makhachhang" fx:id="makhachhang" prefWidth="64.0" text="MKH" />
+          <TableColumn id="hoten" fx:id="hoten" prefWidth="171.0" text="Họ tên" />
+            <TableColumn id="cmnd" fx:id="cmnd" prefWidth="125.0" text="CMND" />
+            <TableColumn id="diachi" fx:id="diachi" prefWidth="204.0" text="Địa chỉ" />
+            <TableColumn id="gioitinh" fx:id="gioitinh" minWidth="0.0" prefWidth="69.0" text="Giới tính" />
+            <TableColumn id="sdt" fx:id="sdt" prefWidth="132.0" text="Số điện thoại" />
+            <TableColumn id="quoctich" fx:id="quoctich" prefWidth="135.0" text="Quốc tịch" />
         </columns>
       </TableView>
-      <Button  id="them" fx:id="them" onAction="#handleInsertCustomer" layoutX="594.0" layoutY="288.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="81.0" text="Thêm" />
-      <Button  id="sua" fx:id="sua" onAction="#handleUpdateTour" layoutX="593.0" layoutY="350.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="Sửa" />
-      <Button  id="xoa" fx:id="xoa" onAction="#handleDeleteCustomer" layoutX="691.0" layoutY="288.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="Xóa" />
-      <TextField id="makhachhangtf" fx:id="makhachhangtf" layoutX="128.0" layoutY="292.0" />
-      <TextField id="cmndtf" fx:id="cmndtf" layoutX="128.0" layoutY="396.0" />
-      <TextField id="hotentf" fx:id="hotentf" layoutX="128.0" layoutY="344.0" />
-      <TextField id="diachitf" fx:id="diachitf" layoutX="128.0" layoutY="448.0" />
-      <TextField id="gioitinhtf" fx:id="gioitinhtf" layoutX="420.0" layoutY="292.0" />
-      <TextField id="sdttf" fx:id="sdttf" layoutX="420.0" layoutY="344.0" />
-      <TextField id="quoctichtf" fx:id="quoctichtf" layoutX="420.0" layoutY="396.0" />
-      <Text layoutX="21.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã khách hàng" />
-      <Text layoutX="21.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên" />
-      <Text layoutX="21.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CMND" />
-      <Text layoutX="21.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ" />
-      <Text layoutX="321.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giới tính" />
-      <Text layoutX="321.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số điện thoại" />
-      <Text layoutX="321.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quốc tịch" />
-      <Button id="refresh" fx:id="refresh" onAction="#handleRefresh" layoutX="691.0" layoutY="350.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="81.0" text="Refresh" />
+      <Button id="them" fx:id="them" layoutX="675.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleInsertCustomer" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="Thêm" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button id="sua" fx:id="sua" layoutX="675.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleUpdateTour" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="Sửa" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button id="xoa" layoutX="836.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleDeleteCustomer" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="Xóa" textFill="WHITE" fx:id="xoa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TextField id="makhachhangtf" fx:id="makhachhangtf" layoutX="148.0" layoutY="292.0" />
+      <TextField id="cmndtf" fx:id="cmndtf" layoutX="148.0" layoutY="396.0" />
+      <TextField id="hotentf" fx:id="hotentf" layoutX="148.0" layoutY="344.0" />
+      <TextField id="diachitf" fx:id="diachitf" layoutX="148.0" layoutY="448.0" />
+      <TextField id="gioitinhtf" fx:id="gioitinhtf" layoutX="455.0" layoutY="292.0" />
+      <TextField id="sdttf" fx:id="sdttf" layoutX="455.0" layoutY="344.0" />
+      <TextField id="quoctichtf" fx:id="quoctichtf" layoutX="455.0" layoutY="396.0" />
+      <Text layoutX="39.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã khách hàng">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <Text layoutX="38.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <Text layoutX="38.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CMND">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <Text layoutX="38.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <Text layoutX="359.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giới tính">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <Text layoutX="356.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số điện thoại">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <Text layoutX="356.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quốc tịch">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <Button id="refresh" fx:id="refresh" layoutX="837.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="Refresh" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

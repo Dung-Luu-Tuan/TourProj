@@ -31,6 +31,7 @@ import java.util.ResourceBundle;
 public class CustomerController implements Initializable {
     @FXML
     private TableView<Customer> tableCustomersList;
+
     @FXML
     private TableColumn<Customer, String> makhachhang, hoten, cmnd, diachi, gioitinh, sdt, quoctich;
     @FXML
@@ -97,20 +98,23 @@ public class CustomerController implements Initializable {
             customer.setGioitinh(gioitinhtf.getText());
             customer.setSdt(sdttf.getText());
             customer.setQuoctich(quoctichtf.getText());
-            if ((makhachhangtf.getText()) == "") {
+            if ((makhachhangtf.getText()) == "" && hotentf.getText() != "" && cmndtf.getText() != ""
+            && diachitf.getText() != "" && gioitinhtf.getText() != "" && sdttf.getText() != "" && quoctichtf.getText() != "") {
                 CustomerDAO.insert(customer);
                 loadData();
-            } else {
+            } else if(makhachhangtf.getText() != ""){
                 Notifications.create()
                         .title("Thông báo")
                         .text("Tour đã tồn tại")
                         .showWarning();
+            } else {
+                Notifications.create()
+                        .title("Thông báo")
+                        .text("Vui lòng nhập dữ liệu cần thêm")
+                        .showWarning();
             }
         } catch (Exception e) {
-            Notifications.create()
-                    .title("Thông báo")
-                    .text("Vui lòng nhập dữ liệu cần thêm")
-                    .showWarning();
+            e.printStackTrace();
         }
     }
     public void handleDeleteCustomer() {

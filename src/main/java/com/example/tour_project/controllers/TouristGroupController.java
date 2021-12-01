@@ -37,16 +37,16 @@ import java.util.ResourceBundle;
 public class TouristGroupController implements Initializable {
 
     @FXML
-    private TableColumn<TouristGroup, String> madoan, tengoi, matour, ngaykhoihanh, ngayketthuc;
+    private TableColumn<TouristGroup, String> madoan, tengoi, matour, ngaykhoihanh, ngayketthuc, stt;
 
     @FXML
     private TextField madoantf, matourtf, ngaykhoihanhtf, ngayketthuctf, doanhthutf;
 
     @FXML
-    private TableColumn<Tour, String> tourID, tourName ;
+    private TableColumn<Tour, String> tourID, tourName;
 
     @FXML
-    private  TableColumn<TourPrice, String> startDay, endDay, matourPrice, priceTour;
+    private TableColumn<TourPrice, String> startDay, endDay, matourPrice, priceTour;
 
     @FXML
     private TableView<TouristGroup> tableListGroup;
@@ -71,8 +71,9 @@ public class TouristGroupController implements Initializable {
 
     private static SessionFactory factory;
 
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
     float doanhthu2;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factory = HibernateUtil.getSessionFactory();
@@ -97,6 +98,7 @@ public class TouristGroupController implements Initializable {
             Tour tour = TourDAO.getDetail(selected.getMatour());
             TouristGroup touristGroup = TouristGroupDAO.getDetailsByCustomer(selected.getMadoan());
             Float price = null;
+            int result;
 
             for (TourPrice tourPrice : tour.getPrices()) {
                 if (tourPrice.getDateStart().equals(selected.getNgaykhoihanh())) {
@@ -104,15 +106,19 @@ public class TouristGroupController implements Initializable {
                     break;
                 }
             }
-
-            int result = (int) (touristGroup.getCustomerTour().size()*price);
+            if (price == null) {
+                result = (int) (touristGroup.getCustomerTour().size() * 0);
+            } else {
+                result = (int) (touristGroup.getCustomerTour().size() * price);
+            }
             if (selected != null) {
                 madoantf.setText(Integer.toString(selected.getMadoan()));
                 madoantf.setEditable(false);
                 doanhthutf.setEditable(false);
                 matourtf.setText(Integer.toString(selected.getMatour()));
-                ngaykhoihanhtf.setText(String.valueOf(selected.getNgaykhoihanh()));
-                ngayketthuctf.setText(String.valueOf(selected.getNgayketthuc()));;
+                ngaykhoihanhtf.setText(PriceDAO.DateFormat2((Date) selected.getNgaykhoihanh()));
+                ngayketthuctf.setText(PriceDAO.DateFormat2((Date) selected.getNgayketthuc()));
+
                 doanhthu2 = Float.parseFloat(String.valueOf(result));
                 doanhthutf.setText(String.valueOf(result));
             }
@@ -120,7 +126,7 @@ public class TouristGroupController implements Initializable {
 
         tableTour.setOnMouseClicked((MouseEvent e) -> {
             Tour selected = tableTour.getSelectionModel().getSelectedItem();
-            if(selected != null){
+            if (selected != null) {
                 Tour tourPrice = TourDAO.getDetail(selected.getMatour());
                 priceTourList = FXCollections.observableArrayList(tourPrice.getPrices());
                 tablePrice.getItems().clear();
@@ -140,7 +146,7 @@ public class TouristGroupController implements Initializable {
         clear();
     }
 
-    public void clear(){
+    public void clear() {
         madoantf.clear();
         matourtf.clear();
         ngaykhoihanhtf.clear();
@@ -160,33 +166,119 @@ public class TouristGroupController implements Initializable {
     }
 
     @FXML
-    private void gotoDetails (ActionEvent e) throws IOException {
-       try {
-           //lấy stage hiện tại
-           Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-           FXMLLoader loader = new FXMLLoader();
-           loader.setLocation(getClass().getResource("/com/example/tour_project/tourist-group-details.fxml"));
-           Parent tourGroupDetailsParent = loader.load();
-           Scene scene = new Scene(tourGroupDetailsParent);
+    private void gotoDetails(ActionEvent e) throws IOException {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/tourist-group-details.fxml"));
+            Parent tourGroupDetailsParent = loader.load();
+            Scene scene = new Scene(tourGroupDetailsParent);
 
-           TouristGroupDetailsController controller = loader.getController();
-           TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
-           controller.setView(selected);
+            TouristGroupDetailsController controller = loader.getController();
+            TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
+            controller.setView(selected);
 
-           stage.setScene(scene);
-       } catch (Exception e1) {
-           Notifications.create()
-                   .title("Thông báo")
-                   .text("Vui lòng chọn dữ liệu cần xem chi tiết")
-                   .showWarning();
-       }
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn dữ liệu cần xem chi tiết")
+                    .showWarning();
+        }
+    }
+
+    @FXML
+    private void gotoCustomers(ActionEvent e) throws IOException {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/customers-group-tour.fxml"));
+            Parent customersParent = loader.load();
+            Scene scene = new Scene(customersParent);
+
+            CustomersGroupTourController controller = loader.getController();
+            TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
+            controller.setView(selected);
+
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (Exception e1) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn đoàn du lịch cần xem")
+                    .showWarning();
+        }
+    }
+
+    @FXML
+    public void gotoStaffAllocation(ActionEvent e) throws IOException {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/staff-tour-list.fxml"));
+            Parent tourLocationsParent = loader.load();
+            Scene scene = new Scene(tourLocationsParent);
+
+            StaffTourController controller = loader.getController();
+            TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
+            controller.setView(selected);
+
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (Exception e1) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn đoàn du lịch cần xem")
+                    .showWarning();
+        }
+    }
+
+    @FXML
+    public void gotoCost(ActionEvent e) throws IOException {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/cost-tour-group.fxml"));
+            Parent tourLocationsParent = loader.load();
+            Scene scene = new Scene(tourLocationsParent);
+
+            CostTourGroupController controller = loader.getController();
+            TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
+            controller.setView(selected);
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e1) {
+            Notifications.create()
+                    .title("Thông báo")
+                    .text("Vui lòng chọn đoàn du lịch cần xem")
+                    .showWarning();
+        }
     }
 
     public void handleUpdateTouristGroup() {
+        TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
+        Tour tourPrice = TourDAO.getDetail(selected.getMatour());
         try {
-            SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
-            TouristGroup tourGroup = new TouristGroup(Integer.parseInt(madoantf.getText()), Integer.parseInt(matourtf.getText()), formatter1.parse(ngaykhoihanhtf.getText()), formatter1.parse(ngayketthuctf.getText()), doanhthu2);
-            TouristGroupDAO.update(tourGroup);
+            boolean flag = false;
+            for(TourPrice t : tourPrice.getPrices()){
+                if(formatter1.parse(ngaykhoihanhtf.getText()).equals(t.getDateStart()) &&
+                        formatter1.parse(ngayketthuctf.getText()).equals(t.getDateEnd())){
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag == true){
+                TouristGroup tourGroup = new TouristGroup(Integer.parseInt(madoantf.getText()), Integer.parseInt(matourtf.getText()), formatter1.parse(ngaykhoihanhtf.getText()), formatter1.parse(ngayketthuctf.getText()), doanhthu2);
+                TouristGroupDAO.update(tourGroup);
+            } else {
+                Notifications.create()
+                        .title("Thông báo")
+                        .text("Ngày khởi hành hoặc ngày kết thúc không hợp lệ")
+                        .showWarning();
+            }
+
             loadData();
         } catch (Exception e) {
             e.printStackTrace();
@@ -200,33 +292,52 @@ public class TouristGroupController implements Initializable {
     public void handleInsertTouristGroup() {
         TouristGroup tourGroup = new TouristGroup();
         try {
-            tourGroup.setMatour(Integer.parseInt(matourtf.getText()));
-            tourGroup.setNgaykhoihanh(formatter.parse(ngaykhoihanhtf.getText()));
-            tourGroup.setNgayketthuc(formatter.parse(ngayketthuctf.getText()));
+            TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
+            Tour tourPrice = TourDAO.getDetail(selected.getMatour());
+            boolean flag = false;
+            for(TourPrice t : tourPrice.getPrices()){
+                if(formatter1.parse(ngaykhoihanhtf.getText()).equals(t.getDateStart()) &&
+                        formatter1.parse(ngayketthuctf.getText()).equals(t.getDateEnd())) {
+                    flag = true;
+                    break;
+                }
+            }
+
             if ((madoantf.getText()) == "") {
-                TouristGroupDAO.insert(tourGroup);
-                loadData();
+                if (flag == true) {
+                    tourGroup.setMatour(Integer.parseInt(matourtf.getText()));
+                    tourGroup.setNgaykhoihanh(formatter1.parse(ngaykhoihanhtf.getText()));
+                    tourGroup.setNgayketthuc(formatter1.parse(ngayketthuctf.getText()));
+                    tourGroup.setDoanhthu(0);
+                    TouristGroupDAO.insert(tourGroup);
+                    loadData();
+                } else {
+                    Notifications.create()
+                            .title("Thông báo")
+                            .text("Ngày khởi hành hoặc ngày kết thúc không hợp lệ")
+                            .showWarning();
+                }
             } else {
                 Notifications.create()
                         .title("Thông báo")
-                        .text("Mã đoàn tự cập nhật")
+                        .text("Đoàn du lịch này đã tồn tại")
                         .showWarning();
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Notifications.create()
                     .title("Thông báo")
-                    .text("Vui lòng nhập dữ liệu cần thêm")
+                    .text("Vui lòng nhập đầy đủ dữ liệu cần thêm")
                     .showWarning();
         }
     }
 
     public void handleDeleteTouristGroup() {
         try {
-            TouristGroup tourGroup = new TouristGroup(Integer.parseInt(madoantf.getText()), Integer.parseInt(matourtf.getText()), formatter.parse(ngaykhoihanhtf.getText()), formatter.parse(ngayketthuctf.getText()),doanhthu2);
+            TouristGroup tourGroup = new TouristGroup(Integer.parseInt(madoantf.getText()), Integer.parseInt(matourtf.getText()), formatter1.parse(ngaykhoihanhtf.getText()), formatter1.parse(ngayketthuctf.getText()), doanhthu2);
             TouristGroupDAO.delete(tourGroup);
             loadData();
         } catch (Exception e) {
+            e.printStackTrace();
             Notifications.create()
                     .title("Thông báo")
                     .text("Vui lòng chọn dữ liệu cần xóa")

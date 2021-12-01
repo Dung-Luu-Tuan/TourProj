@@ -1,7 +1,7 @@
 package com.example.tour_project.dao;
 
 import com.example.tour_project.models.Place;
-import com.example.tour_project.models.PlaceOrder;
+import com.example.tour_project.models.TypeTour;
 import com.example.tour_project.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -10,16 +10,16 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class PlaceDAO {
+public class TypeTourDAO {
     private static SessionFactory factory;
 
-    public static List<Place> listPlace() {
-        List<Place> places = null;
+    public static List<TypeTour> listType() {
+        List<TypeTour> typeTours = null;
         factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         try {
-            places = session.createQuery("from Place").list();
-            return places;
+            typeTours = session.createQuery("from TypeTour").list();
+            return typeTours;
         } catch (HibernateException e) {
             e.printStackTrace();
         }
@@ -27,34 +27,34 @@ public class PlaceDAO {
         return null;
     }
 
-    public static void insert(Place place){
-        if (place != null) {
+    public static void insert(TypeTour typeTour){
+        if (typeTour != null) {
             factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
-            session.save(place);
+            session.save(typeTour);
             tx.commit();
             session.close();
         }
     }
 
-    public static void delete(Place place){
-        if (place != null) {
+    public static void delete(TypeTour typeTour){
+        if (typeTour != null) {
             factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
-            session.delete(place);
+            session.delete(typeTour);
             tx.commit();
             session.close();
         }
     }
 
-    public static void update(Place place){
-        if (place != null) {
+    public static void update(TypeTour typeTour){
+        if (typeTour != null) {
             factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
-            session.saveOrUpdate(place);
+            session.saveOrUpdate(typeTour);
             tx.commit();
             session.close();
         }

@@ -5,29 +5,59 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="524.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.StaffListsController">
+<AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.StaffListsController">
     <children>
-        <TableView id="tableListStaff" fx:id="tableListStaffs" layoutY="8.0" prefHeight="250.0" prefWidth="774.0">
+        <TableView id="tableListStaff" fx:id="tableListStaffs" layoutX="104.0" layoutY="25.0" prefHeight="268.0" prefWidth="780.0">
             <columns>
                 <TableColumn id="manhanvien" fx:id="manhanvien" prefWidth="141.0" text="Mã nhân viên" />
                 <TableColumn id="tennhanvien" fx:id="tennhanvien" prefWidth="243.0" text="Họ tên" />
                 <TableColumn id="sodienthoai" fx:id="sodienthoai" prefWidth="167.0" text="Số điện thoại" />
-                <TableColumn id="diachi" fx:id="diachi" prefWidth="192.0" text="Địa chỉ" />
+                <TableColumn id="diachi" fx:id="diachi" prefWidth="228.0" text="Địa chỉ" />
             </columns>
         </TableView>
-        <Button id="them" fx:id="them" layoutX="594.0" layoutY="288.0" mnemonicParsing="false" onAction="#handleInsertStaff" prefHeight="38.0" prefWidth="81.0" text="Thêm" />
-        <Button id="sua" fx:id="sua" layoutX="593.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleUpdateStaff" prefHeight="38.0" prefWidth="82.0" text="Sửa" />
-        <Button id="xoa" layoutX="691.0" layoutY="288.0" mnemonicParsing="false" onAction="#handleDeleteStaff" prefHeight="38.0" prefWidth="82.0" text="Xóa" fx:id="xoa" />
-        <TextField id="manhanvientf" fx:id="manhanvientf" editable="false" layoutX="128.0" layoutY="292.0" />
-        <TextField id="tennhanvientf" fx:id="tennhanvientf" layoutX="128.0" layoutY="344.0" />
-        <TextField id="sodienthoaitf" fx:id="sodienthoaitf" layoutX="420.0" layoutY="292.0" />
-        <TextField id="diachitf" fx:id="diachitf" layoutX="420.0" layoutY="344.0" />
-        <Text layoutX="21.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã nhân viên" />
-        <Text layoutX="21.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên" />
-        <Text layoutX="321.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số điện thoại" />
-        <Text layoutX="321.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ" />
-        <Button id="refresh" fx:id="refresh" layoutX="691.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="38.0" prefWidth="81.0" text="Refresh" />
+        <Button id="them" fx:id="them" layoutX="571.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleInsertStaff" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button id="sua" fx:id="sua" layoutX="571.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleUpdateStaff" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="UPDATE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button id="xoa" layoutX="788.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleDeleteStaff" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE" fx:id="xoa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <TextField id="manhanvientf" fx:id="manhanvientf" editable="false" layoutX="238.0" layoutY="313.0" prefHeight="25.0" prefWidth="195.0" />
+        <TextField id="tennhanvientf" fx:id="tennhanvientf" layoutX="238.0" layoutY="364.0" prefHeight="25.0" prefWidth="195.0" />
+        <TextField id="sodienthoaitf" fx:id="sodienthoaitf" layoutX="238.0" layoutY="417.0" prefHeight="25.0" prefWidth="195.0" />
+        <TextField id="diachitf" fx:id="diachitf" layoutX="238.0" layoutY="463.0" prefHeight="25.0" prefWidth="195.0" />
+        <Text layoutX="128.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã nhân viên">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+        <Text layoutX="129.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+        <Text layoutX="129.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số điện thoại">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+        <Text layoutX="128.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+        <Button id="refresh" fx:id="refresh" layoutX="789.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button id="xoa" layoutX="683.0" layoutY="385.0" mnemonicParsing="false" onAction="#handleDeleteStaff" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #4CAF50;" text="BACK" textFill="WHITE" fx:id="xoa1">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

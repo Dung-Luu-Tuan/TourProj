@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
@@ -23,4 +25,7 @@ public class TypeCost {
 
     @Column(name = "tenchiphi")
     private String tenchiphi;
+
+    @OneToMany(mappedBy = "typeCost", fetch = FetchType.LAZY)
+    private List<Cost> costs;
 }

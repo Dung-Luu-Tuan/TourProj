@@ -91,19 +91,17 @@ public class TourListsController implements Initializable {
     }
 
     public void gotoDetails(ActionEvent e) throws IOException {
-        //lấy stage hiện tại
         try {
-            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/tour-details.fxml"));
             Parent tourDetailsParent = loader.load();
             Scene scene = new Scene(tourDetailsParent);
 
             TourDetailsController controller = loader.getController();
             Tour selected = tableListTours.getSelectionModel().getSelectedItem();
             controller.setView(selected);
-
             stage.setScene(scene);
+            stage.show();
         } catch (Exception e1) {
             Notifications.create()
                     .title("Thông báo")

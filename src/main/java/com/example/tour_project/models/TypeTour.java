@@ -30,4 +30,9 @@ public class TypeTour implements Serializable {
 
     @OneToMany(mappedBy = "loaihinh", fetch = FetchType.LAZY)
     private List<Tour> tours;
+
+    public TypeTour(int maloaihinh, String tenloaihinh){
+        this.maloaihinh = maloaihinh;
+        this.tenloaihinh = tenloaihinh;
+    }
 }

@@ -26,14 +26,14 @@ public class TouristGroupDAO {
         return null;
     }
 
-    public static TouristGroup getDetails(int matour) {
+    public static TouristGroup getDetails(int madoan) {
         TouristGroup tourGroup = null;
         factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         session.clear();
         try {
             session.beginTransaction();
-            tourGroup = session.find(TouristGroup.class, matour);
+            tourGroup = session.find(TouristGroup.class, madoan);
             return tourGroup;
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,6 +60,7 @@ public class TouristGroupDAO {
 
     public static void update(TouristGroup tourGroup) {
         if (tourGroup != null) {
+            factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
             session.update(tourGroup);
@@ -70,6 +71,7 @@ public class TouristGroupDAO {
 
     public static void insert(TouristGroup tourgroup){
         if (tourgroup != null) {
+            factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
             session.save(tourgroup);
@@ -80,6 +82,7 @@ public class TouristGroupDAO {
 
     public static void delete(TouristGroup tourgroup){
         if (tourgroup != null) {
+            factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             Transaction tx = session.beginTransaction();
             session.delete(tourgroup);

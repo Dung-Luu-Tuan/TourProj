@@ -22,9 +22,26 @@ public class Cost {
     private int machiphi;
 
     @Column(name = "madoan")
-    private String madoan;
+    private int madoan;
 
     @Column(name = "sotien")
     private float sotien;
-    private String maloaichiphi;
+
+    @Column(name = "maloaichiphi")
+    private int maloaichiphi;
+
+    @ManyToOne
+    @JoinColumn(name = "maloaichiphi", nullable = false, insertable = false, updatable = false)
+    private TypeCost typeCost;
+
+    @ManyToOne
+    @JoinColumn(name = "madoan", nullable = false, insertable = false, updatable = false)
+    private TouristGroup touristGroup;
+
+    public Cost(int machiphi,int madoan, float sotien, int maloaichiphi){
+        this.machiphi = machiphi;
+        this.madoan = madoan;
+        this.sotien = sotien;
+        this.maloaichiphi = maloaichiphi;
+    }
 }

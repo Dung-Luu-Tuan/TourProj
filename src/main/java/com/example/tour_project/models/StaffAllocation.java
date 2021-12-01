@@ -1,6 +1,7 @@
 package com.example.tour_project.models;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -15,6 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @ToString
 @Entity
 @Table(name = "staff_allocation")
+@RequiredArgsConstructor
 public class StaffAllocation implements Serializable {
     @Id
     @Column(name = "manhanvien", unique = true, nullable = false, length = 45)
@@ -26,4 +28,18 @@ public class StaffAllocation implements Serializable {
 
     @Column(name = "nhiemvu")
     private String nhiemvu;
+
+    @ManyToOne
+    @JoinColumn(name = "madoan", nullable = false, insertable = false, updatable = false)
+    private TouristGroup touristGroup;
+
+    @ManyToOne
+    @JoinColumn(name = "manhanvien", nullable = false, insertable = false, updatable = false)
+    private Staff staff;
+
+    public StaffAllocation(int manhanvien, int madoan, String nhiemvu) {
+        this.manhanvien = manhanvien;
+        this.madoan = madoan;
+        this.nhiemvu = nhiemvu;
+    }
 }

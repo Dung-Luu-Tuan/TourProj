@@ -8,9 +8,9 @@ import lombok.ToString;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
 
 @Getter
 @Setter
@@ -51,4 +51,14 @@ public class Customer implements Serializable {
         this.sdt=sdt;
         this.quoctich=quoctich;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //JoinTable bảng trung gian
+    //joinColumns: column mapping với table hiện tại
+    // inverseJoinColumns: column mapping với table còn lại
+    @JoinTable(name = "customer_tour",
+            joinColumns = { @JoinColumn(name = "makhachhang", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "madoan", nullable = false, updatable = false) })
+    private Set<TouristGroup> groupTourCus;
+
 }

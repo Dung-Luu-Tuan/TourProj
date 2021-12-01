@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -64,5 +65,14 @@ public class TouristGroup implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CustomerTour> customerTour;
 
+    @OneToMany(mappedBy = "touristGroup")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<StaffAllocation> staffAllocations;
 
+    @OneToMany(mappedBy = "touristGroup")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Cost> costs;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "groupTourCus")
+    private Set<Customer> customers;
 }

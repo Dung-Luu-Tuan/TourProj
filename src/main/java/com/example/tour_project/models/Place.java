@@ -29,4 +29,9 @@ public class Place implements Serializable {
 
     @OneToMany(mappedBy = "place", fetch = FetchType.LAZY)
     private List<PlaceOrder> placeOrders;
+
+    public Place(int madiadiem, String tendiadiem){
+        this.madiadiem = madiadiem;
+        this.tendiadiem = tendiadiem;
+    }
 }
