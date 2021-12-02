@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.TypeCostController">
    <children>
-      <TableView fx:id="typeCostTable" id="typeCostTable" layoutX="142.0" layoutY="33.0" prefHeight="253.0" prefWidth="704.0">
+      <TableView id="typeCostTable" fx:id="typeCostTable" layoutX="142.0" layoutY="33.0" prefHeight="253.0" prefWidth="704.0">
         <columns>
           <TableColumn id="machiphi" fx:id="machiphi" prefWidth="254.0" text="Mã loại chi phí" />
           <TableColumn id="tenchiphi" fx:id="tenchiphi" prefWidth="449.0" text="Tên loại chi phí" />
@@ -29,9 +28,21 @@
          </font>
       </Label>
       <TextField id="tenchiphitf" fx:id="tenchiphitf" layoutX="267.0" layoutY="408.0" prefHeight="25.0" prefWidth="219.0" />
-      <Button onAction="#handleInsertTypeCost" layoutX="592.0" layoutY="338.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" text="ADD" />
-      <Button onAction="#handleDeleteTypeCost" layoutX="722.0" layoutY="338.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" text="DELETE" />
-      <Button onAction="#handleUpdateTypeCost" layoutX="592.0" layoutY="408.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" text="UPDATE" />
-      <Button onAction="#handleRefreshTypeCost" layoutX="722.0" layoutY="408.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="72.0" text="REFRESH" />
+      <Button layoutX="592.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleInsertTypeCost" prefHeight="32.0" prefWidth="72.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="722.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleDeleteTypeCost" prefHeight="32.0" prefWidth="72.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="592.0" layoutY="408.0" mnemonicParsing="false" onAction="#handleUpdateTypeCost" prefHeight="32.0" prefWidth="72.0" style="-fx-background-color: #0B99D3;" text="UPDATE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="722.0" layoutY="408.0" mnemonicParsing="false" onAction="#handleRefreshTypeCost" prefHeight="32.0" prefWidth="72.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

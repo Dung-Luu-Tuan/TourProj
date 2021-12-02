@@ -77,19 +77,14 @@ public class MainController implements Initializable {
         contentArena.getChildren().removeAll();
         contentArena.getChildren().setAll(root);
     }
-
-
-
-//    @FXML
-//    private void handleClick(ActionEvent event) {
-//        if (event.getSource() == btnCustomer) {
-//            lbTittle.setText("Customer");
-//            pnTittle.setBackground(new Background(new BackgroundFill(Color.rgb(63, 43, 99), CornerRadii.EMPTY, Insets.EMPTY)));
-//        } else if (event.getSource() == btnTour) {
-//            lbTittle.setText("Tour");
-//            pnTittle.setBackground(new Background(new BackgroundFill(Color.rgb(3, 3, 8), CornerRadii.EMPTY, Insets.EMPTY)));
-//        }
-//    }
+    @FXML
+    public void typeCost(javafx.event.ActionEvent actionEvent) throws IOException{
+        lbTittle.setText("Nhân viên");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tour_project/typecost-list.fxml"));
+        Parent root = loader.load();
+        contentArena.getChildren().removeAll();
+        contentArena.getChildren().setAll(root);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
