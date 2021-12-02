@@ -105,7 +105,7 @@ public class CustomerController implements Initializable {
             } else if(makhachhangtf.getText() != ""){
                 Notifications.create()
                         .title("Thông báo")
-                        .text("Tour đã tồn tại")
+                        .text("Khách hàng đã tồn tại")
                         .showWarning();
             } else {
                 Notifications.create()
@@ -119,7 +119,7 @@ public class CustomerController implements Initializable {
     }
     public void handleDeleteCustomer() {
         try {
-            Customer customer = new Customer(Integer.parseInt(makhachhangtf.getText()), hotentf.getText(), cmndtf.getText(), diachitf.getText(), gioitinhtf.getText(), quoctichtf.getText(),sdttf.getText());
+            Customer customer = new Customer(Integer.parseInt(makhachhangtf.getText()), hotentf.getText(), cmndtf.getText(), diachitf.getText(), gioitinhtf.getText(), sdttf.getText(), quoctichtf.getText());
             CustomerDAO.delete(customer);
             loadData();
         } catch (Exception e) {
@@ -131,7 +131,7 @@ public class CustomerController implements Initializable {
     }
     public void handleUpdateTour() {
         try {
-            Customer customer = new Customer(Integer.parseInt(makhachhangtf.getText()), hotentf.getText(), cmndtf.getText(), diachitf.getText(), gioitinhtf.getText(), quoctichtf.getText(),sdttf.getText());
+            Customer customer = new Customer(Integer.parseInt(makhachhangtf.getText()), hotentf.getText(), cmndtf.getText(), diachitf.getText(), gioitinhtf.getText(), sdttf.getText(), quoctichtf.getText());
             CustomerDAO.update(customer);
             loadData();
         } catch (Exception e) {
