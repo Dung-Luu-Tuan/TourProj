@@ -56,8 +56,9 @@ public class TypeCostController implements Initializable {
     }
 
     public void handleInsertTypeCost(){
+        TypeCost typeCost = new TypeCost();
         try{
-            TypeCost typeCost = new TypeCost(Integer.parseInt(machiphitf.getText()), tenchiphitf.getText());
+            typeCost.setTenchiphi(tenchiphitf.getText());
             if ((machiphitf.getText()) == "") {
                 TypeCostDAO.insert(typeCost);
                 handleRefreshTypeCost();

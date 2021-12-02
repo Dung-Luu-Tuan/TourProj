@@ -288,8 +288,7 @@ public class TouristGroupController implements Initializable {
     public void handleInsertTouristGroup() {
         TouristGroup tourGroup = new TouristGroup();
         try {
-            TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
-            Tour tourPrice = TourDAO.getDetail(selected.getMatour());
+            Tour tourPrice = TourDAO.getDetail(Integer.parseInt(matourtf.getText()));
             boolean flag = false;
             for(TourPrice t : tourPrice.getPrices()){
                 if(formatter1.parse(ngaykhoihanhtf.getText()).equals(t.getDateStart()) &&
@@ -320,6 +319,7 @@ public class TouristGroupController implements Initializable {
                         .showWarning();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             Notifications.create()
                     .title("Thông báo")
                     .text("Vui lòng nhập đầy đủ dữ liệu cần thêm")

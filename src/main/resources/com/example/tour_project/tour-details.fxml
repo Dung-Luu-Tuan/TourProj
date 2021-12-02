@@ -74,5 +74,10 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
+      <Button layoutX="704.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="46.0" prefWidth="143.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

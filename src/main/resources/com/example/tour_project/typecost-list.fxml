@@ -21,7 +21,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField id="machiphitf" fx:id="machiphitf" layoutX="267.0" layoutY="347.0" prefHeight="25.0" prefWidth="219.0" />
+      <TextField id="machiphitf" fx:id="machiphitf" editable="false" layoutX="267.0" layoutY="347.0" prefHeight="25.0" prefWidth="219.0" />
       <Label layoutX="150.0" layoutY="411.0" prefHeight="18.0" prefWidth="97.0" text="Tên loại chi phí">
          <font>
             <Font name="System Bold" size="12.0" />

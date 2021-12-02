@@ -76,7 +76,7 @@ public class TourDetailsController{
 
     Tour tour2 = null;
     public void setView(Tour tour) {
-        tour2 = TourDAO.getDetail(tour.getMatour());
+        tour2 = tour;
 
         matour.setText(String.valueOf(tour.getMatour()));
         tengoi.setText(String.valueOf(tour.getTengoi()));
@@ -87,17 +87,13 @@ public class TourDetailsController{
         thanhtien.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.priceWithoutDecimal(data.getValue().getThanhtien())));
         thoigianbatdau.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateStart())));
         thoigianketthuc.setCellValueFactory(data -> new SimpleStringProperty(PriceDAO.DateFormat((Date) data.getValue().getDateEnd())));
+        loadDataPrice();
 
-        tourDetailList = FXCollections.observableArrayList(tour2.getPrices());
-        tableListDetailTour.setItems(tourDetailList);
 
         stt.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf((data.getValue().getThutu()))));
         tendiadiem.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf((data.getValue().getPlace().getTendiadiem()))));
         madiadiem.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf((data.getValue().getMadiadiem()))));
-
-        placeList = FXCollections.observableArrayList(tour2.getPlaceOrders());
-        tablePlace.setItems(placeList);
-        tablePlace.getSortOrder().add(stt);
+        loadDataLocation();
     }
 
     public void gotoLocations(ActionEvent e) throws IOException {
@@ -126,6 +122,24 @@ public class TourDetailsController{
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void loadDataPrice(){
+        Tour tour = TourDAO.getDetail(tour2.getMatour());
+        tourDetailList = FXCollections.observableArrayList(tour.getPrices());
+        tableListDetailTour.setItems(tourDetailList);
+    }
+
+    public void loadDataLocation(){
+        Tour tour = TourDAO.getDetail(tour2.getMatour());
+        placeList = FXCollections.observableArrayList(tour.getPlaceOrders());
+        tablePlace.setItems(placeList);
+        tablePlace.getSortOrder().add(stt);
+    }
+
+    public void handleRefresh(){
+        loadDataPrice();
+        loadDataLocation();
     }
 
 }

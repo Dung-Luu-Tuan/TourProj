@@ -8,61 +8,72 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tour_project.controllers.StaffTourController">
+<AnchorPane prefHeight="520.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.tour_project.controllers.StaffTourController">
     <children>
-        <TableView id="misstionTable" fx:id="misstionTable" layoutX="56.0" layoutY="73.0" prefHeight="212.0" prefWidth="469.0">
+        <TableView id="misstionTable" fx:id="misstionTable" layoutX="56.0" layoutY="73.0" prefHeight="212.0"
+                   prefWidth="469.0">
             <columns>
-                <TableColumn id="msnv" fx:id="msnv" prefWidth="62.0" text="MSNV" />
-                <TableColumn id="tennhanvien" fx:id="tennhanvien" prefWidth="199.0" text="Tên nhân viên" />
-                <TableColumn id="nhiemvu" fx:id="nhiemvu" prefWidth="207.0" text="Nhiệm vụ" />
+                <TableColumn id="msnv" fx:id="msnv" prefWidth="62.0" text="MSNV"/>
+                <TableColumn id="tennhanvien" fx:id="tennhanvien" prefWidth="199.0" text="Tên nhân viên"/>
+                <TableColumn id="nhiemvu" fx:id="nhiemvu" prefWidth="207.0" text="Nhiệm vụ"/>
             </columns>
         </TableView>
-        <TableView id="staffTable" fx:id="staffTable" layoutX="633.0" layoutY="73.0" prefHeight="212.0" prefWidth="287.0">
+        <TableView id="staffTable" fx:id="staffTable" layoutX="633.0" layoutY="73.0" prefHeight="212.0"
+                   prefWidth="287.0">
             <columns>
-                <TableColumn id="msnvtb" fx:id="msnvtb" prefWidth="74.0" text="MSNV" />
-                <TableColumn id="tennhanvientb" fx:id="tennhanvientb" prefWidth="212.0" text="Tên nhân viên" />
+                <TableColumn id="msnvtb" fx:id="msnvtb" prefWidth="74.0" text="MSNV"/>
+                <TableColumn id="tennhanvientb" fx:id="tennhanvientb" prefWidth="212.0" text="Tên nhân viên"/>
             </columns>
         </TableView>
         <Label layoutX="28.0" layoutY="311.0" prefHeight="30.0" prefWidth="63.0" text="MSNV:">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="12.0"/>
             </font>
         </Label>
         <Label layoutX="28.0" layoutY="372.0" prefHeight="30.0" prefWidth="63.0" text="Nhiệm vụ:">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="12.0"/>
             </font>
         </Label>
-        <TextField id="msnvtf" fx:id="msnvtf" layoutX="104.0" layoutY="314.0" prefHeight="25.0" prefWidth="323.0" />
-        <TextField id="nhiemvutf" fx:id="nhiemvutf" layoutX="104.0" layoutY="374.0" prefHeight="25.0" prefWidth="323.0" />
-        <Button layoutX="633.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleInsertLocation" prefHeight="43.0" prefWidth="87.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
+        <TextField id="msnvtf" fx:id="msnvtf" layoutX="104.0" layoutY="314.0" prefHeight="25.0" prefWidth="323.0"/>
+        <TextField id="nhiemvutf" fx:id="nhiemvutf" layoutX="104.0" layoutY="374.0" prefHeight="25.0"
+                   prefWidth="323.0"/>
+        <Button layoutX="54.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleInsertLocation"
+                prefHeight="43.0" prefWidth="74.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="12.0"/>
             </font>
         </Button>
-        <Button layoutX="832.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleDeleteLocation" prefHeight="43.0" prefWidth="87.0" style="-fx-background-color: #0B99D3;" text="DELETE" textFill="WHITE">
+        <Button layoutX="174.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleDeleteLocation"
+                prefHeight="43.0" prefWidth="74.0" style="-fx-background-color: #0B99D3;" text="DELETE"
+                textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="12.0"/>
             </font>
         </Button>
-        <Button layoutX="633.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleUpdateStaffAllocation" prefHeight="43.0" prefWidth="87.0" style="-fx-background-color: #0B99D3;" text="UPDATE" textFill="WHITE">
+        <Button layoutX="291.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleUpdateStaffAllocation"
+                prefHeight="43.0" prefWidth="74.0" style="-fx-background-color: #0B99D3;" text="UPDATE"
+                textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="12.0"/>
             </font>
         </Button>
-        <Button layoutX="832.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleRefreshLocation" prefHeight="43.0" prefWidth="87.0" style="-fx-background-color: #0B99D3;" text="REFRESH" textFill="WHITE">
+        <Button layoutX="745.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleRefreshLocation"
+                prefHeight="52.0" prefWidth="99.0" style="-fx-background-color: #4CAF50;" text="REFRESH"
+                textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="12.0"/>
             </font>
         </Button>
         <Label layoutX="46.0" layoutY="24.0" prefHeight="25.0" prefWidth="178.0" text="PHÂN BỔ NHÂN VIÊN ĐOÀN: ">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="12.0"/>
             </font>
         </Label>
         <Label id="label" fx:id="label" layoutX="236.0" layoutY="27.0" prefHeight="17.0" prefWidth="141.0" text="Label">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="14.0"/>
             </font>
         </Label>
     </children>
