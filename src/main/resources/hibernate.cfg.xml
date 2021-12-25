@@ -14,7 +14,7 @@
             root
         </property>
         <property name="hibernate.connection.password">
-            tien123
+            master
         </property>
 
         <!-- JDBC connection pool (use the built-in) -->

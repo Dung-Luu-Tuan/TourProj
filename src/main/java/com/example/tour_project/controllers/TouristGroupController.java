@@ -93,20 +93,7 @@ public class TouristGroupController implements Initializable {
             TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
             Tour tour = TourDAO.getDetail(selected.getMatour());
             TouristGroup touristGroup = TouristGroupDAO.getDetailsByCustomer(selected.getMadoan());
-            Float price = null;
-            int result;
 
-            for (TourPrice tourPrice : tour.getPrices()) {
-                if (tourPrice.getDateStart().equals(selected.getNgaykhoihanh())) {
-                    price = tourPrice.getThanhtien();
-                    break;
-                }
-            }
-            if (price == null) {
-                result = (int) (touristGroup.getCustomerTour().size() * 0);
-            } else {
-                result = (int) (touristGroup.getCustomerTour().size() * price);
-            }
             if (selected != null) {
                 madoantf.setText(Integer.toString(selected.getMadoan()));
                 madoantf.setEditable(false);
@@ -115,8 +102,13 @@ public class TouristGroupController implements Initializable {
                 ngaykhoihanhtf.setText(PriceDAO.DateFormat2((Date) selected.getNgaykhoihanh()));
                 ngayketthuctf.setText(PriceDAO.DateFormat2((Date) selected.getNgayketthuc()));
 
-                doanhthu2 = Float.parseFloat(String.valueOf(result));
-                doanhthutf.setText(String.valueOf(result));
+                doanhthu2 = Float.parseFloat(String.valueOf(selected.getDoanhthu()));
+                if(doanhthu2 == 0){
+                    doanhthutf.setText(String.valueOf(0));
+
+                } else {
+                    doanhthutf.setText(String.valueOf(PriceDAO.priceWithoutDecimal(doanhthu2)));
+                }
             }
         });
 
@@ -197,6 +189,7 @@ public class TouristGroupController implements Initializable {
             TouristGroup selected = tableListGroup.getSelectionModel().getSelectedItem();
             controller.setView(selected);
 
+            selected.getCustomerTour();
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();

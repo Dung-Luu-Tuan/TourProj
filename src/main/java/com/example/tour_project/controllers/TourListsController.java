@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import com.example.tour_project.dao.TourDAO;
+import com.example.tour_project.dao.TypeTourDAO;
 import com.example.tour_project.models.Tour;
+import com.example.tour_project.models.TypeTour;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -44,6 +46,15 @@ public class TourListsController implements Initializable {
     private TextField tengoitf, maloaihinhtf, dacdiemtf, matourtf;
 
     @FXML
+    private TableView<TypeTour> tableListTypeTour;
+
+    @FXML
+    private TableColumn<TypeTour, String> maloaihinhtb, tenloaihinhtb;
+
+    @FXML
+    private ObservableList<TypeTour> typeTourList;
+
+    @FXML
     private ObservableList<Tour> tourList;
 
     private static SessionFactory factory;
@@ -67,6 +78,11 @@ public class TourListsController implements Initializable {
             }
         });
 
+        maloaihinhtb.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getMaloaihinh())));
+        tenloaihinhtb.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTenloaihinh()));
+        typeTourList = FXCollections.observableArrayList(TypeTourDAO.listType());
+        tableListTypeTour.getItems().clear();
+        tableListTypeTour.setItems(typeTourList);
     }
 
     private void loadData() {

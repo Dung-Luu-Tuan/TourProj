@@ -21,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Tour implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "matour", unique = true, nullable = false, length = 15)
     private int matour;
 

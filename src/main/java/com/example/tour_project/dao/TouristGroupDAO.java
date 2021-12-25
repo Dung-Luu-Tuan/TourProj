@@ -69,6 +69,17 @@ public class TouristGroupDAO {
         }
     }
 
+    public static void update2(int id, float revenue) {
+        factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        TouristGroup touristGroup = session.get(TouristGroup.class, id);
+        touristGroup.setDoanhthu(revenue);
+        session.update(touristGroup);
+        tx.commit();
+        session.close();
+    }
+
     public static void insert(TouristGroup tourgroup){
         if (tourgroup != null) {
             factory = HibernateUtil.getSessionFactory();
@@ -89,5 +100,15 @@ public class TouristGroupDAO {
             tx.commit();
             session.close();
         }
+    }
+
+    public static TouristGroup getTouristGroupById(int id){
+        TouristGroup touristGroup = null;
+        factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        touristGroup = session.get(TouristGroup.class, id);
+        tx.commit();
+        return touristGroup;
     }
 }

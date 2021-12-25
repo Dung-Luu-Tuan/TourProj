@@ -2,6 +2,7 @@ package com.example.tour_project.controllers;
 
 import com.example.tour_project.dao.CustomerDAO;
 import com.example.tour_project.dao.CustomerTourDAO;
+import com.example.tour_project.dao.TourDAO;
 import com.example.tour_project.dao.TouristGroupDAO;
 import com.example.tour_project.models.*;
 import javafx.beans.property.SimpleStringProperty;
@@ -109,6 +110,25 @@ public class CustomersGroupTourController implements Serializable {
         }
     }
 
+    public float Revenue(int id){
+        TouristGroup touristGroup = TouristGroupDAO.getTouristGroupById(id);
+        Tour tour = TourDAO.getDetail(touristGroup.getMatour());
+        Float price = null;
+        int result;
+
+        for (TourPrice tourPrice : tour.getPrices()) {
+            if (tourPrice.getDateStart().equals(touristGroup.getNgaykhoihanh())) {
+                price = tourPrice.getThanhtien();
+                break;
+            }
+        }
+        if (price == null) {
+            result = (int) (touristGroup.getCustomerTour().size() * 0);
+        } else {
+            result = (int) (touristGroup.getCustomerTour().size() * price);
+        }
+        return result;
+    }
 
     public void handleInsertGroupCustomers() {
         listCustomers = CustomerDAO.listCustomer();
@@ -126,6 +146,8 @@ public class CustomersGroupTourController implements Serializable {
                     CustomerTour customer = new CustomerTour(touristGroupSend.getMadoan(),
                             Integer.parseInt(idCustomerTf.getText()));
                     CustomerTourDAO.insertCustomerTour(customer);
+                    float revenue = Revenue(touristGroupSend.getMadoan());
+                    TouristGroupDAO.update2(touristGroupSend.getMadoan(), revenue);
                     clear();
                     loadData();
                 } else {
@@ -147,6 +169,8 @@ public class CustomersGroupTourController implements Serializable {
             if(idCustomerTf.getText() != ""){
                 CustomerTour customerTour = new CustomerTour(touristGroupSend.getMadoan(), Integer.parseInt(idCustomerTf.getText()));
                 CustomerTourDAO.deleteCustomerTour(customerTour);
+                float revenue = Revenue(touristGroupSend.getMadoan());
+                TouristGroupDAO.update2(touristGroupSend.getMadoan(), revenue);
                 loadData();
             } else {
                 Notifications.create()
