@@ -63,6 +63,12 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
+      <TableView id="tableListTypeTour" fx:id="tableListTypeTour" layoutX="630.0" layoutY="354.0" prefHeight="134.0" prefWidth="333.0">
+        <columns>
+          <TableColumn id="maloaihinhtb" fx:id="maloaihinhtb" prefWidth="88.0" text="Mã loại hình" />
+          <TableColumn id="tenloaihinhtb" fx:id="tenloaihinhtb" prefWidth="244.0" text="Tên loại hình" />
+        </columns>
+      </TableView>
     </children>
     <opaqueInsets>
         <Insets />

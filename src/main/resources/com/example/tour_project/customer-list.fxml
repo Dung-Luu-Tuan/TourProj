@@ -33,7 +33,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <TextField id="makhachhangtf" fx:id="makhachhangtf" layoutX="148.0" layoutY="292.0" />
+      <TextField id="makhachhangtf" fx:id="makhachhangtf" editable="false" layoutX="148.0" layoutY="292.0" />
       <TextField id="cmndtf" fx:id="cmndtf" layoutX="148.0" layoutY="396.0" />
       <TextField id="hotentf" fx:id="hotentf" layoutX="148.0" layoutY="344.0" />
       <TextField id="diachitf" fx:id="diachitf" layoutX="148.0" layoutY="448.0" />

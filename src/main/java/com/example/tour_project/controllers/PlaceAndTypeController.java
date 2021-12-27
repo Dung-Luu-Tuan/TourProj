@@ -75,8 +75,9 @@ public class PlaceAndTypeController implements Initializable {
 
     public void handleInsertPlace(){
         try{
-            Place place = new Place(Integer.parseInt(madiadiemtf.getText()), tendiadiemtf.getText());
+            Place place = new Place();
             if ((madiadiemtf.getText()) == "") {
+                place.setTendiadiem(tendiadiemtf.getText());
                 PlaceDAO.insert(place);
                 handleRefreshPlace();
             } else {
@@ -135,8 +136,9 @@ public class PlaceAndTypeController implements Initializable {
 
     public void handleInsertType(){
         try{
-            TypeTour typeTour = new TypeTour(Integer.parseInt(maloaihinhtf.getText()), tenloaihinhtf.getText());
+            TypeTour typeTour = new TypeTour();
             if ((maloaihinhtf.getText()) == "") {
+                typeTour.setTenloaihinh(tenloaihinhtf.getText());
                 TypeTourDAO.insert(typeTour);
                 handleRefreshType();
             } else {

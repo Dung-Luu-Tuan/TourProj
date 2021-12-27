@@ -44,7 +44,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextField id="maloaihinhtf" fx:id="maloaihinhtf" layoutX="655.0" layoutY="262.0" prefHeight="25.0" prefWidth="303.0" />
+        <TextField id="maloaihinhtf" fx:id="maloaihinhtf" editable="false" layoutX="655.0" layoutY="262.0" prefHeight="25.0" prefWidth="303.0" />
         <TextField id="tenloaihinhtf" fx:id="tenloaihinhtf" layoutX="655.0" layoutY="319.0" prefHeight="25.0" prefWidth="303.0" />
         <Button layoutX="199.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleInsertPlace" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #0B99D3;" text="ADD" textFill="WHITE">
          <font>
